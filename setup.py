@@ -11,7 +11,7 @@ from setuptools import setup
 setup(
     name='AoikHotkey',
 
-    version='0.1',
+    version='0.1.1',
 
     description="""AutoHotkey remake in Python. Hotkey calls Python function.""",
 
