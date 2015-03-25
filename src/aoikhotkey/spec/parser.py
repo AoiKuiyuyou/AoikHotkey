@@ -1,7 +1,6 @@
 # coding: utf-8
 from __future__ import absolute_import
 
-import functools
 import os.path
 import re
 import webbrowser
@@ -9,7 +8,8 @@ import webbrowser
 from aoikhotkey.const import HOTKEY_TYPE_V_DN
 from aoikhotkey.const import HOTKEY_TYPE_V_HS
 from aoikhotkey.const import HOTKEY_TYPE_V_UP
-from aoikhotkey.spec.const import OPT_THREAD
+from aoikhotkey.spec.const import OPT_THREAD_ANOTHER
+from aoikhotkey.spec.const import OPT_THREAD_SAME
 from aoikhotkey.spec.const import OPT_UP
 from aoikhotkey.spec.util import CallAll
 from aoikhotkey.spec.util import Cmd
@@ -28,6 +28,14 @@ try:
     from thread import start_new_thread # Py2
 except ImportError:
     from _thread import start_new_thread # Py3
+
+#/ Make a function "func_t", which when called starts the given function "func"
+##  in a thread.
+## Used at 2tTi8e8.
+def func_t_mk(func):
+    def func_t(*args, **kwargs):
+        start_new_thread(func, args, kwargs)
+    return func_t
 
 #/
 def spec_parse(spec):
@@ -66,13 +74,19 @@ def spec_parse(spec):
             #/
             while True:
                 #/
-                if hotkey.startswith('@'):
+                if hotkey.startswith('$'):
                     #/
                     hotkey = hotkey[1:]
 
                     #/
-                    opt_s.append(OPT_THREAD)
+                    opt_s.append(OPT_THREAD_SAME)
+                #/
+                elif hotkey.startswith('@'):
+                    #/
+                    hotkey = hotkey[1:]
 
+                    #/
+                    opt_s.append(OPT_THREAD_ANOTHER)
                 #/
                 elif hotkey.startswith('~'):
                     #/
@@ -172,8 +186,13 @@ def spec_parse(spec):
             func = CallAll(func_spec_2)
 
         #/
-        if OPT_THREAD in opt_s:
-            func = functools.partial(start_new_thread, func, ())
+        if OPT_THREAD_SAME in opt_s:
+            func = func
+        else:
+        ## In version 0.1, the default is to run in the same thread.
+        ## In version 0.1.1, the default is to run in another thread.
+            #/ 2tTi8e8
+            func = func_t_mk(func)
 
         #/
         up = OPT_UP in opt_s

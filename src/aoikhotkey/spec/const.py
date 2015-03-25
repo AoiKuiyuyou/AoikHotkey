@@ -3,7 +3,9 @@ from __future__ import absolute_import
 
 
 #/
-OPT_THREAD = 'OPT_THREAD'
+OPT_THREAD_SAME = 'OPT_THREAD_SAME'
+
+OPT_THREAD_ANOTHER = 'OPT_THREAD_ANOTHER'
 
 #/
 OPT_UP = 'OPT_UP'
