@@ -2,7 +2,10 @@
 AutoHotkey remake in Python. Hotkey calls Python function.
 
 Tested working with:
-- Windows 7
+- Windows 7 x64
+- Windows 8.1 x64
+  - With Python x86 version (tested with 2.7.9) some key-up events are not
+   received if a hotkey function is run in the same thread.
 - Python 2.7 and 3.4. (x86 and x64 both work.)
 
 Inspired by:
@@ -95,7 +98,7 @@ A triggered hotkey calls a Python function.
 This means the whole Python language is available at hand, which is more
  powerful than AutoHotkey's built-in language.
 
-See an [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L37).
+See an [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L37).
 
 See the details of [hotkey function](#hotkey-function-1).
 
@@ -103,7 +106,7 @@ See the details of [hotkey function](#hotkey-function-1).
 Besides hotkey function that is registered for specific hotkey, event function
  can be registered to handle all key events.
 
-See an [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L39).
+See an [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L39).
 
 See the details of [event function](#event-function-1).
 
@@ -113,8 +116,8 @@ A group of hotkey definitions is called a **spec**.
 [Reloading a spec](#specreload) can be done via hotkey, without
  restarting the program. This is very handy.
 
-See how I use [one hotkey](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L143) to open the editor to
- edit the spec file, and then use [another hotkey](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L232)
+See how I use [one hotkey](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L143) to open the editor to
+ edit the spec file, and then use [another hotkey](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L232)
  to reload the spec.
 
 ### Spec switching via hotkey
@@ -129,7 +132,7 @@ AoikHotkey supports specifying multiple specs.
 ### Similar hotkey definition syntax
 The syntax for hotkey definition is very similar to that of AutoHotkey.
 
-See an [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L37).
+See an [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L37).
 
 See the details of [hotkey parse function](#hotkey-parse-function) that
  defines the hotkey definition syntax.
@@ -245,7 +248,7 @@ python src/aoikhotkey/main/aoikhotkey.py
 ## Quick Usage
 The only argument required by command **aoikhotkey** is a spec object's URI. A
  spec object is a Python list object that contains
- [hotkey definitions](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L37). The
+ [hotkey definitions](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L37). The
  spec object to use is specified by a URI, using [argument -s](#specify-spec-object).
 
 E.g.
@@ -363,11 +366,11 @@ aoikhotkey -s aoikhotkey.main.spec::SPEC -S aoikhotkey.spec.parser::spec_parse
 aoikhotkey -s src/aoikhotkey/main/spec.py::SPEC -S src/aoikhotkey/spec/parser.py::spec_parse
 ```
 - [SPEC](/src/aoikhotkey/main/spec.py#L14)
-- [spec_parse](/src/aoikhotkey/spec/parser.py#L33)
+- [spec_parse](/src/aoikhotkey/spec/parser.py#L41)
 - Use `LCtrl q` to quit the program.
 
 The default is
- [aoikhotkey.spec.parser::spec_parse](/src/aoikhotkey/spec/parser.py#L33).
+ [aoikhotkey.spec.parser::spec_parse](/src/aoikhotkey/spec/parser.py#L41).
 
 ### Specify hotkey parse function
 Hotkey parse function is discussed [here](#hotkey-parse-function).
@@ -387,11 +390,11 @@ aoikhotkey -s aoikhotkey.main.spec::SPEC -p aoikhotkey.spec.parser::hotkey_parse
 aoikhotkey -s src/aoikhotkey/main/spec.py::SPEC -p src/aoikhotkey/spec/parser.py::hotkey_parse
 ```
 - [SPEC](/src/aoikhotkey/main/spec.py#L14)
-- [hotkey_parse](/src/aoikhotkey/spec/parser.py#L214)
+- [hotkey_parse](/src/aoikhotkey/spec/parser.py#L233)
 - Use `LCtrl q` to quit the program.
 
 The default is
- [aoikhotkey.spec.parser::hotkey_parse](/src/aoikhotkey/spec/parser.py#L214).
+ [aoikhotkey.spec.parser::hotkey_parse](/src/aoikhotkey/spec/parser.py#L233).
 
 ### Specify virtual key name-to-code function
 Virtual key name-to-code function is discussed [here](#virtual-key-name-to-code-function).
@@ -561,8 +564,8 @@ First, the spec object specified via [argument -s](#specify-spec-object) is
 The spec object's format is not fixed but should be compatible with the spec
  parse function in use.
 
-Here is an [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L37) of the spec format supported by
- the [default spec parse function](/src/aoikhotkey/spec/parser.py#L33).
+Here is an [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L37) of the spec format supported by
+ the [default spec parse function](/src/aoikhotkey/spec/parser.py#L41).
 
 The default spec parse function takes a list of
  (hotkey definition, hotkey function ...) tuples where "hotkey function ..."
@@ -594,9 +597,12 @@ The default spec parse function does exactly the two things. Meanwhile, it
   Trailing `::` can be added to resemble AutoHotkey's syntax, e.g.
    `('::abc::', f)`.
 - A beginning `@` means to call the hotkey function in another thread. E.g. spec
-   item `('@a', f)` means to call hotkey function `f` in another thread.
-- `@` can be combined with either `~` or `::`. `~` and `::` can not be combined
-   with each other, for the obvious reason.
+   item `('@a', f)` means to call hotkey function `f` in another thread. This is
+   the default behaviour so `@` needs not be specified explicitly.
+- A beginning `$` means to call the hotkey function in the same thread. E.g.
+   spec item `('$a', f)` means to call hotkey function `f` in the same thread.
+- `@` or `$` can be combined with either `~` or `::`. `~` and `::` can not be
+   combined with each other, for the obvious reason.
 
 The special syntax recognized by a spec parse function should be removed from
  the hotkey definition after the call. What's left in the resulting hotkey
@@ -622,7 +628,7 @@ A hotkey parse function is required to take three arguments:
 It is the hotkey parse function in use that defines the syntax of the hotkey
  definition.
 
-The default [hotkey parse function](/src/aoikhotkey/spec/parser.py#L214) supports a
+The default [hotkey parse function](/src/aoikhotkey/spec/parser.py#L233) supports a
  syntax that is very similar to that of AutoHotkey:
 - `^`, `!`, `+` and `#` mean Control, Alt, Shift and Win keys, respectively.
 - A `<` or `>` preceding any of the four keys above converts the key into its
@@ -782,17 +788,17 @@ A hotkey function's return value matters.
 #### Quit
 Quit the program.
 
-See the [code](/src/aoikhotkey/spec/util.py#L26) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L230).
+See the [code](/src/aoikhotkey/spec/util.py#L26) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L230).
 
 #### SpecReload
 Reload the current spec.
 
-See the [code](/src/aoikhotkey/spec/util.py#L30) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L232).
+See the [code](/src/aoikhotkey/spec/util.py#L30) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L232).
 
 #### SpecSwitch
 Switch to a spec.
 
-See the [code](/src/aoikhotkey/spec/util.py#L72) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L273).
+See the [code](/src/aoikhotkey/spec/util.py#L72) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L273).
 
 #### EventProp
 Return True so that a key event is propagated to next handler.
@@ -816,7 +822,7 @@ If a command can not be well split on space, e.g. it has space inside some
  argument, you can either specify another separator, or use
  [Cmd2](#cmd2) instead.
 
-See the [code](/src/aoikhotkey/spec/util.py#L120) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L106).
+See the [code](/src/aoikhotkey/spec/util.py#L120) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L106).
 
 #### Cmd2
 Run a command.
@@ -826,12 +832,12 @@ It takes a variable-list (e.g. *args, not a list object) of command components.
 
 Command components can have spaces inside them.
 
-See the [code](/src/aoikhotkey/spec/util.py#L133) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L74).
+See the [code](/src/aoikhotkey/spec/util.py#L133) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L74).
 
 #### Send
 Send keys. Similar to AutoHotkey's **Send** function.
 
-See the [code](/src/aoikhotkey/spec/util.py#L159) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L87).
+See the [code](/src/aoikhotkey/spec/util.py#L159) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L87).
 
 #### Send2
 [Send](#send) with the **imod_dn** option set on.
@@ -845,7 +851,7 @@ After sending the keys, if the **imod_dn** option is set on, **Send** will
  hotkey's modifier keys have been released already (even though you are still
  physically pressing on them).
 
-See the [code](/src/aoikhotkey/spec/util.py#L209) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L260).
+See the [code](/src/aoikhotkey/spec/util.py#L209) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L260).
 
 #### SendSubs
 
@@ -854,7 +860,7 @@ Send substitution text. Used together with a
  of text substitution. Similar to what key-sequence hotkey (e.g. `::abc::`) does
  in AutoHotkey.
 
-See the [code](/src/aoikhotkey/spec/util.py#L214) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L91).
+See the [code](/src/aoikhotkey/spec/util.py#L214) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L91).
 
 #### Sleep
 Sleep for a while. Similar to AutoHotkey's **Sleep** function.
@@ -862,7 +868,7 @@ Sleep for a while. Similar to AutoHotkey's **Sleep** function.
 Note sleep will block the current thread. If the sleep time is long, you might
  want to run the hotkey function in [another thread](#spec-parse-function).
 
-See the [code](/src/aoikhotkey/spec/util.py#L248) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L117).
+See the [code](/src/aoikhotkey/spec/util.py#L248) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L117).
 
 ### Event function
 If a hotkey definition is None, the hotkey function becomes an event function.
@@ -889,7 +895,7 @@ See the [code](/src/aoikhotkey/spec/efunc.py#L12).
 #### efunc_no_mouse
 Print message about every key event except mouse events.
 
-See the [code](/src/aoikhotkey/spec/efunc.py#L64) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L39).
+See the [code](/src/aoikhotkey/spec/efunc.py#L64) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L39).
 
 #### efunc_no_mouse_move
 Print message about every key event except mouse move events.

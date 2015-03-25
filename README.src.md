@@ -3,17 +3,17 @@
 aoikdyndocdsl -s README.src.md -n aoikdyndocdsl.ext.all::nto -g README.md
 """)
 ]\
-[:var_set('common_spec_link', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L37')]\
-[:var_set('common_spec_efunc_link', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L39')]\
-[:var_set('common_spec_link2', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L143')]\
-[:var_set('common_spec_link3', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L232')]\
+[:var_set('common_spec_link', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L37')]\
+[:var_set('common_spec_efunc_link', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L39')]\
+[:var_set('common_spec_link2', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L143')]\
+[:var_set('common_spec_link3', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L232')]\
 [:var_set('hotkey_add_link', '/src/aoikhotkey/manager.py#L400')]\
-[:var_set('hotkey_parse_link', '/src/aoikhotkey/spec/parser.py#L214')]\
+[:var_set('hotkey_parse_link', '/src/aoikhotkey/spec/parser.py#L233')]\
 [:var_set('main_spec_link', '/src/aoikhotkey/main/spec.py#L14')]\
 [:var_set('hook_manager_link', 'https://github.com/Answeror/pyhook_py3k/blob/3a0a1fe8fb190e10761dd80f55a4cf8efd0fb3e3/HookManager.py#L1')]\
 [:var_set('spec_arg_flag', '-s')]\
 [:var_set('spf_arg_flag', '-p')]\
-[:var_set('spf_link', '/src/aoikhotkey/spec/parser.py#L33')]\
+[:var_set('spf_link', '/src/aoikhotkey/spec/parser.py#L41')]\
 [:var_set('vk_ntc_arg_flag', '-n')]\
 [:var_set('vk_ntc_link', '/src/aoikhotkey/virkey.py#L159')]\
 [:var_set('vk_tran_arg_flag', '-t')]\
@@ -26,35 +26,38 @@ aoikdyndocdsl -s README.src.md -n aoikdyndocdsl.ext.all::nto -g README.md
 [:var_set('vk_ntc_full_list_vk_name', '/src/aoikhotkey/dep/aoikvirkey.py#L6')]\
 [:var_set('vk_ntc_full_list_vk_sname', '/src/aoikhotkey/virkey.py#L114')]\
 [:var_set('quit_link', '/src/aoikhotkey/spec/util.py#L26')]\
-[:var_set('quit_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L230')]\
+[:var_set('quit_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L230')]\
 [:var_set('specreload_link', '/src/aoikhotkey/spec/util.py#L30')]\
-[:var_set('specreload_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L232')]\
+[:var_set('specreload_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L232')]\
 [:var_set('specswitch_link', '/src/aoikhotkey/spec/util.py#L72')]\
-[:var_set('specswitch_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L273')]\
+[:var_set('specswitch_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L273')]\
 [:var_set('eventprop_link', '/src/aoikhotkey/spec/util.py#L76')]\
 [:var_set('eventstop_link', '/src/aoikhotkey/spec/util.py#L83')]\
 [:var_set('cmd_link', '/src/aoikhotkey/spec/util.py#L120')]\
-[:var_set('cmd_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L106')]\
+[:var_set('cmd_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L106')]\
 [:var_set('cmd2_link', '/src/aoikhotkey/spec/util.py#L133')]\
-[:var_set('cmd2_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L74')]\
+[:var_set('cmd2_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L74')]\
 [:var_set('send_link', '/src/aoikhotkey/spec/util.py#L159')]\
-[:var_set('send_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L87')]\
+[:var_set('send_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L87')]\
 [:var_set('send2_link', '/src/aoikhotkey/spec/util.py#L209')]\
-[:var_set('send2_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L260')]\
+[:var_set('send2_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L260')]\
 [:var_set('sendsubs_link', '/src/aoikhotkey/spec/util.py#L214')]\
-[:var_set('sendsubs_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L91')]\
+[:var_set('sendsubs_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L91')]\
 [:var_set('sleep_link', '/src/aoikhotkey/spec/util.py#L248')]\
-[:var_set('sleep_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L117')]\
+[:var_set('sleep_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L117')]\
 [:var_set('efunc_link', '/src/aoikhotkey/spec/efunc.py#L12')]\
 [:var_set('efunc_no_mouse_link', '/src/aoikhotkey/spec/efunc.py#L64')]\
-[:var_set('efunc_no_mouse_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1/src/aoikhotkeydemo/common/spec.py#L39')]\
+[:var_set('efunc_no_mouse_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L39')]\
 [:var_set('efunc_no_mouse_move_link', '/src/aoikhotkey/spec/efunc.py#L74')]\
 [:HDLR('heading', 'heading')]\
 # AoikHotkey
 AutoHotkey remake in Python. Hotkey calls Python function.
 
 Tested working with:
-- Windows 7
+- Windows 7 x64
+- Windows 8.1 x64
+  - With Python x86 version (tested with 2.7.9) some key-up events are not
+   received if a hotkey function is run in the same thread.
 - Python 2.7 and 3.4. (x86 and x64 both work.)
 
 Inspired by:
@@ -563,9 +566,12 @@ The default spec parse function does exactly the two things. Meanwhile, it
   Trailing `::` can be added to resemble AutoHotkey's syntax, e.g.
    `('::abc::', f)`.
 - A beginning `@` means to call the hotkey function in another thread. E.g. spec
-   item `('@a', f)` means to call hotkey function `f` in another thread.
-- `@` can be combined with either `~` or `::`. `~` and `::` can not be combined
-   with each other, for the obvious reason.
+   item `('@a', f)` means to call hotkey function `f` in another thread. This is
+   the default behaviour so `@` needs not be specified explicitly.
+- A beginning `$` means to call the hotkey function in the same thread. E.g.
+   spec item `('$a', f)` means to call hotkey function `f` in the same thread.
+- `@` or `$` can be combined with either `~` or `::`. `~` and `::` can not be
+   combined with each other, for the obvious reason.
 
 The special syntax recognized by a spec parse function should be removed from
  the hotkey definition after the call. What's left in the resulting hotkey
