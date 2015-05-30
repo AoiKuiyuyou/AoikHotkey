@@ -23,10 +23,27 @@ from aoikvirkey import VK_SHIFT
 
 
 #/
+MAIN_THREAD_TAG_K = '_AOIKHOTKEY_MAIN_THREAD_TAG'
+
+#/ Decorator
+def main_thread(func):
+    #/
+    setattr(func, MAIN_THREAD_TAG_K, True)
+
+    #/
+    return func
+
+#/
+def main_thread_tag_is_on(func):
+    return getattr(func, MAIN_THREAD_TAG_K, False)
+
+#/
+@main_thread
 def Quit():
     manager_get().eloop_end()
 
 #/
+@main_thread
 def SpecReload():
     #/
     end_code = ELOOP_END_CODE_V_SPEC_RELOAD
@@ -48,6 +65,7 @@ def SpecReload():
     manager.eloop_end(code=end_code)
 
 #/
+@main_thread
 def spec_switch(spec_id):
     #/
     end_code = ELOOP_END_CODE_V_SPEC_SWITCH
@@ -69,6 +87,7 @@ def spec_switch(spec_id):
     manager.eloop_end(code=end_code)
 
 #/
+@main_thread
 def SpecSwitch(spec_id):
     return partial(spec_switch, spec_id)
 

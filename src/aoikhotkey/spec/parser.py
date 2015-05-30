@@ -15,6 +15,7 @@ from aoikhotkey.spec.util import CallAll
 from aoikhotkey.spec.util import Cmd
 from aoikhotkey.spec.util import Cmd2
 from aoikhotkey.spec.util import NeedHotkeyInfo
+from aoikhotkey.spec.util import main_thread_tag_is_on
 from aoikhotkey.virkey import EVK_WIN
 from aoikhotkey.virkey import VK_TRAN_SIDE_V_LEFT
 from aoikhotkey.virkey import VK_TRAN_SIDE_V_NONE
@@ -187,6 +188,8 @@ def spec_parse(spec):
 
         #/
         if OPT_THREAD_SAME in opt_s:
+            func = func
+        elif main_thread_tag_is_on(func):
             func = func
         else:
         ## In version 0.1, the default is to run in the same thread.
