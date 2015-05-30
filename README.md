@@ -2,11 +2,11 @@
 AutoHotkey remake in Python. Hotkey calls Python function.
 
 Tested working with:
-- Windows 7 x64
-- Windows 8.1 x64
+- Python 2.7 and 3.4
+- Windows 7
+- Windows 8.1
   - With Python x86 version (tested with 2.7.9) some key-up events are not
-   received if a hotkey function is run in the same thread.
-- Python 2.7 and 3.4. (x86 and x64 both work.)
+   received if a hotkey function is run in the main thread.
 
 Inspired by:
 - [AutoHotkey](https://github.com/AutoHotkey/AutoHotkey)
@@ -21,15 +21,13 @@ Inspired by:
   - [Spec switching via hotkey](#spec-switching-via-hotkey)
   - [Similar hotkey definition syntax](#similar-hotkey-definition-syntax)
   - [Customizable hotkey definition parsing](#customizable-hotkey-definition-parsing)
-- [Setup](#setup)
-  - [Setup of PyWin32](#setup-of-pywin32)
-  - [Setup of pyHook](#setup-of-pyhook)
-    - [In Python 2](#in-python-2)
-    - [In Python 3](#in-python-3)
-  - [Setup of AoikHotkey](#setup-of-aoikhotkey)
-    - [Setup via pip](#setup-via-pip)
-    - [Setup via git](#setup-via-git)
-  - [Find entry program](#find-entry-program)
+- [Setup of PyWin32](#setup-of-pywin32)
+- [Setup of pyHook](#setup-of-pyhook)
+  - [In Python 2](#in-python-2)
+  - [In Python 3](#in-python-3)
+- [Setup of AoikHotkey](#setup-of-aoikhotkey)
+  - [Setup via git](#setup-via-git)
+  - [Setup via pip](#setup-via-pip)
 - [Quick Usage](#quick-usage)
 - [Program Usage](#program-usage)
   - [Show help](#show-help)
@@ -149,23 +147,17 @@ Can also be used to do complicated things like reinventing the whole hotkey
 
 See the details of [parsing mechanism](#parsing-mechanism).
 
-## Setup
-AoikHotkey depends on external libs [PyWin32](http://sourceforge.net/projects/pywin32/)
- and [pyHook](http://sourceforge.net/projects/pyhook/).
-
-**pyHook** uses C extension so toolset for compiling C extension is required.
-
-### Setup of PyWin32
+## Setup of PyWin32
 Use an installer from [here](http://sourceforge.net/projects/pywin32/files/pywin32/).
 - Choose the latest build version  (e.g. Build 219 on 2014-05-04).
 - Make sure the installer matches with your Python version, e.g. **amd64-py2.7**
    if you are using a **Python 2.7 x64** version.
 
-### Setup of pyHook
+## Setup of pyHook
 - [In Python 2](#in-python-2)
 - [In Python 3](#in-python-3)
 
-#### In Python 2
+### In Python 2
 If your Python 2 is x86 version, use the installer
  [pyHook-1.5.1.win32-py2.7.exe](http://sourceforge.net/projects/pyhook/files/pyhook/1.5.1/pyHook-1.5.1.win32-py2.7.exe/download).
 
@@ -178,7 +170,7 @@ python setup.py install
 ```
 - Toolset for compiling C extension is required.
 
-#### In Python 3
+### In Python 3
 pyHook's official version does not support Python 3.
 
 Instead, use the fork [pyhook_py3k](https://github.com/Answeror/pyhook_py3k).
@@ -196,54 +188,54 @@ python setup.py install
 ```
 - Toolset for compiling C extension is required.
 
-### Setup of AoikHotkey
-- [Setup via pip](#setup-via-pip)
+## Setup of AoikHotkey
 - [Setup via git](#setup-via-git)
+- [Setup via pip](#setup-via-pip)
 
-#### Setup via pip
-Run
-```
-pip install git+https://github.com/AoiKuiyuyou/AoikHotkey
-```
-
-#### Setup via git
-Clone this repo to local
+### Setup via git
+Clone this git repository to local:
 ```
 git clone https://github.com/AoiKuiyuyou/AoikHotkey
 ```
 
-Run the **setup.py** file in the local repo dir
+In the local repository directory, the entry program can be run directly without
+further installation:
+```
+python src/aoikhotkey/main/aoikhotkey.py
+```
+- No requirements on working directory, the entry program can be run anywhere as
+   long as the path is correct.
+- No need to configure **PYTHONPATH** because the entry program supports
+  [package bootstrap](https://github.com/AoiKuiyuyou/AoikProjectStart-Python#package-bootstrap).
+
+If you prefer an installation, run the **setup.py** file in the local repository
+directory:
 ```
 python setup.py install
 ```
-The effect is equivalent to installation via pip.
 
-It's also ok not running **setup.py**, because the entry program can be run
-directly without installation.
-
-### Find entry program
-If the installation is via pip, or you have run the **setup.py** in the local
- repo dir, then a command named **aoikhotkey** should be available from
- command line. Run
-```
-aoikhotkey
-```
-
-And because the package has been installed to system package dir, it's
-also runnable via module name
+The installation will install program files into Python's "package directory".
+As a result, the entry program is also accessible via module name:
 ```
 python -m aoikhotkey.main
 ```
 
-Anyway, if command **aoikhotkey** is not available, you can still run the
- entry program directly. Go to the local repo dir. Run
+And the installation will create an executable file in Python's
+"script directory". If Python's "script directory" has been added to your
+command console's **PATH** environment variable, the entry program should be
+accessible in short name:
 ```
-python src/aoikhotkey/main/aoikhotkey.py
+aoikhotkey
 ```
-- No requirement on working dir, the entry program can be run anywhere as
-   long as the path is correct.
-- No need to configure **PYTHONPATH** because the entry program supports
-  [package bootstrap](https://github.com/AoiKuiyuyou/AoikProjectStart-Python#package-bootstrap).
+
+### Setup via pip
+Run:
+```
+pip install git+https://github.com/AoiKuiyuyou/AoikHotkey
+```
+
+Installing via pip is equivalent to cloning this git repository to local and
+running the **setup.py** file in the local repository directory.
 
 ## Quick Usage
 The only argument required by command **aoikhotkey** is a spec object's URI. A
