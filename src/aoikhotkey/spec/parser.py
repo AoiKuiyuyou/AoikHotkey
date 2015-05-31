@@ -215,8 +215,8 @@ def spec_parse(spec):
             #/
             hotkey_type = HOTKEY_TYPE_V_DN
 
-        #/
-        res_item_s.append((hotkey, hotkey_type, func))
+        #/ 7asgYVg
+        res_item_s.append((hotkey, hotkey_type, func, spec_item))
 
     #/
     return res_item_s

@@ -522,7 +522,15 @@ def main_imp():
             #/
             for spec_item in spec_item_s:
                 #/
-                hotkey, hotkey_type, func = spec_item
+                if len(spec_item) == 4:
+                    hotkey, hotkey_type, func, data = spec_item
+                #/ To be compatible with old "spec_item" format
+                elif len(spec_item) == 3:
+                    hotkey, hotkey_type, func = spec_item
+
+                    data = None
+                else:
+                    raise ValueError('Invalid spec item: {}'.format(spec_item))
 
                 #/ 4qTr9wr
                 #/ empty hotkey means the user wants to add event function
@@ -530,8 +538,9 @@ def main_imp():
                     #/
                     manager.efunc_add(func)
                 else:
-                    #/
-                    manager.hotkey_add(hotkey, func=func, type=hotkey_type)
+                    #/ 6tC5Ktw
+                    manager.hotkey_add(hotkey, func=func, type=hotkey_type,
+                        data=data)
         #/
         except Exception:
             #/
