@@ -53,13 +53,13 @@ class HotkeyManager(object):
         self._efunc_s = []
 
         #/ hotkey down functions
-        self._hk_func_d_dn = OrderedDict()
+        self._hk_spec_d_dn = OrderedDict()
 
         #/ hotkey up functions
-        self._hk_func_d_up = OrderedDict()
+        self._hk_spec_d_up = OrderedDict()
 
         #/ hot sequence functions
-        self._hs_func_d = OrderedDict()
+        self._hs_spec_d = OrderedDict()
 
         #/ 3c6XZC1
         ## It works like this:
@@ -165,13 +165,13 @@ class HotkeyManager(object):
         self._efunc_s = None
 
         #/
-        self._hk_func_d_dn = None
+        self._hk_spec_d_dn = None
 
         #/
-        self._hk_func_d_up = None
+        self._hk_spec_d_up = None
 
         #/
-        self._hs_func_d = None
+        self._hs_spec_d = None
 
         #/
         self._hk_info_d = None
@@ -360,14 +360,14 @@ class HotkeyManager(object):
         return item_s
 
     #/
-    def _hotkey_func_d_get(self, type):
+    def _hotkey_spec_d_get(self, type):
         #/
         if type == HOTKEY_TYPE_V_DN:
-            res = self._hk_func_d_dn
+            res = self._hk_spec_d_dn
         elif type == HOTKEY_TYPE_V_UP:
-            res = self._hk_func_d_up
+            res = self._hk_spec_d_up
         elif type == HOTKEY_TYPE_V_HS:
-            res = self._hs_func_d
+            res = self._hs_spec_d
         else:
             assert 0, type
 
@@ -397,7 +397,7 @@ class HotkeyManager(object):
         return max(self._hk_info_d.keys())+1
 
     #/
-    def hotkey_add(self, hotkey, func, type=HOTKEY_TYPE_V_DN):
+    def hotkey_add(self, hotkey, func, type=HOTKEY_TYPE_V_DN, data=None):
         #/
         hotkey_orig = hotkey
 
@@ -408,7 +408,7 @@ class HotkeyManager(object):
         hotkey_s = self._hotkey_expand(hotkey)
 
         #/
-        hk_func_d = self._hotkey_func_d_get(type)
+        hk_spec_d = self._hotkey_spec_d_get(type)
 
         #/ 3ukuZyp
         hotkey_tup_s = [self._hotkey_to_tup(x, type=type) for x in hotkey_s]
@@ -416,7 +416,7 @@ class HotkeyManager(object):
         #/
         for hotkey_tup in hotkey_tup_s:
             #/
-            if hotkey_tup in hk_func_d:
+            if hotkey_tup in hk_spec_d:
                 #/
                 if type == HOTKEY_TYPE_V_DN:
                     up_dn_txt = ' down '
@@ -437,8 +437,8 @@ class HotkeyManager(object):
                     )
                 )
 
-            #/
-            hk_func_d[hotkey_tup] = func
+            #/ 9o2zOGe
+            hk_spec_d[hotkey_tup] = (func, data)
 
         #/ 3wTzCho
         info_tup = (hotkey, hotkey_tup_s, func, type)
@@ -471,7 +471,7 @@ class HotkeyManager(object):
         _, hotkey_tup_s, _, hotkey_type = info_tup
 
         #/
-        hk_func_pair_s = self._hotkey_func_d_get(hotkey_type)
+        hk_func_pair_s = self._hotkey_spec_d_get(hotkey_type)
 
         #/
         for hotkey_tup in hotkey_tup_s:
@@ -482,12 +482,12 @@ class HotkeyManager(object):
         return info_tup
 
     #/
-    def _hotkey_func_get(self, hotkey, type):
+    def _hotkey_spec_get(self, hotkey, type):
         #/
         hotkey_tup = self._hotkey_to_tup(hotkey, type=type)
 
         #/
-        hotkey_func_d = self._hotkey_func_d_get(type)
+        hotkey_func_d = self._hotkey_spec_d_get(type)
 
         #/ can None
         func = hotkey_func_d.get(hotkey_tup, None)
@@ -500,11 +500,11 @@ class HotkeyManager(object):
             hotkey_is_on = False
 
             #/ can None
-            func = self._hotkey_func_get(
+            spec = self._hotkey_spec_get(
                 hotkey=hotkey, type=type)
 
             #/
-            if func is None:
+            if spec is None:
                 return (hotkey_is_on, prop)
 
             #/
@@ -513,7 +513,7 @@ class HotkeyManager(object):
             #/
             prop = self._hotkey_func_call_safe(
                 hotkey=hotkey,
-                func=func,
+                spec=spec,
                 type=type,
                 event=event,
                 prop=prop,
@@ -522,7 +522,7 @@ class HotkeyManager(object):
             #/
             return (hotkey_is_on, prop)
 
-    def _hotkey_func_call_safe(self, hotkey, func, type, event, prop=None):
+    def _hotkey_func_call_safe(self, hotkey, spec, type, event, prop=None):
         #/
         if type == HOTKEY_TYPE_V_DN:
             up_dn_txt = ' down '
@@ -538,6 +538,9 @@ class HotkeyManager(object):
         )
 
         sys.stderr.write(msg)
+
+        #/ Spec format is determined at 9o2zOGe
+        func = spec[0]
 
         #/
         try:
@@ -590,7 +593,7 @@ class HotkeyManager(object):
         hotseq_is_on = False
 
         #/
-        if not self._hs_func_d:
+        if not self._hs_spec_d:
             return (hotseq_is_on, prop)
 
         #/
@@ -598,7 +601,7 @@ class HotkeyManager(object):
 
         hotseq_len_max = 0
 
-        for hotseq, func in self._hs_func_d.items():
+        for hotseq, spec in self._hs_spec_d.items():
             #/
             hotseq_len = len(hotseq)
 
@@ -614,7 +617,7 @@ class HotkeyManager(object):
                 #/
                 prop = self._hotkey_func_call_safe(
                     hotkey=hotseq,
-                    func=func,
+                    spec=spec,
                     type=HOTKEY_TYPE_V_HS,
                     event=event,
                     prop=prop,
