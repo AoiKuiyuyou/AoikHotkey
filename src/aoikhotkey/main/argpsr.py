@@ -14,6 +14,11 @@ from aoikhotkey.main.argpsr_const import ARG_HOTKEY_PARSE_URI_F
 from aoikhotkey.main.argpsr_const import ARG_HOTKEY_PARSE_URI_H
 from aoikhotkey.main.argpsr_const import ARG_HOTKEY_PARSE_URI_K
 from aoikhotkey.main.argpsr_const import ARG_HOTKEY_PARSE_URI_V
+from aoikhotkey.main.argpsr_const import ARG_HOTKEY_TFUNC_URI_D
+from aoikhotkey.main.argpsr_const import ARG_HOTKEY_TFUNC_URI_F
+from aoikhotkey.main.argpsr_const import ARG_HOTKEY_TFUNC_URI_H
+from aoikhotkey.main.argpsr_const import ARG_HOTKEY_TFUNC_URI_K
+from aoikhotkey.main.argpsr_const import ARG_HOTKEY_TFUNC_URI_V
 from aoikhotkey.main.argpsr_const import ARG_REPEAT_ON_D
 from aoikhotkey.main.argpsr_const import ARG_REPEAT_ON_F
 from aoikhotkey.main.argpsr_const import ARG_REPEAT_ON_H
@@ -103,6 +108,15 @@ def parser_make():
         default=ARG_HOTKEY_PARSE_URI_D,
         metavar=ARG_HOTKEY_PARSE_URI_V,
         help=ARG_HOTKEY_PARSE_URI_H,
+    )
+
+    #/
+    parser.add_argument(
+        ARG_HOTKEY_TFUNC_URI_F,
+        dest=ARG_HOTKEY_TFUNC_URI_K,
+        default=ARG_HOTKEY_TFUNC_URI_D,
+        metavar=ARG_HOTKEY_TFUNC_URI_V,
+        help=ARG_HOTKEY_TFUNC_URI_H,
     )
 
     #/

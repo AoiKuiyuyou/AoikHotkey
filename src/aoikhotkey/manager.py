@@ -9,6 +9,9 @@ import ctypes
 from functools import partial
 import sys
 
+from win32gui import PumpMessages
+
+from aoikexcutil import get_traceback_stxt
 from aoikhotkey.const import EMASK_V_ALL
 from aoikhotkey.const import EMASK_V_EFUNC
 from aoikhotkey.const import EMASK_V_HOTKEY
@@ -24,11 +27,8 @@ from aoikhotkey.virkey import vk_expand as vk_expand_dft
 from aoikhotkey.virkey import vk_mouse_up_to_dn
 from aoikhotkey.virkey import vk_ntc as vk_ntc_dft
 from aoikhotkey.virkey import vk_tran as vk_tran_dft
-from pyHook import HookManager
-from win32gui import PumpMessages
-
-from aoikexcutil import get_traceback_stxt
 from aoikvirkey import VK_MOUSE_WHEEL
+from pyHook import HookManager
 
 
 #/
@@ -37,6 +37,7 @@ class HotkeyManager(object):
     #/
     def __init__(self,
         hotkey_parse=None,
+        hotkey_tfunc=None,
         vk_ntc=None,
         vk_ctn=None,
         vk_tran=None,
@@ -91,6 +92,9 @@ class HotkeyManager(object):
         #/
         self._hotkey_parse = hotkey_parse_dft \
             if hotkey_parse is None else hotkey_parse
+
+        #/
+        self._hotkey_tfunc = hotkey_tfunc
 
         #/ "emask" means "event mask"
         self._emask_v = EMASK_V_ALL
@@ -523,23 +527,23 @@ class HotkeyManager(object):
             return (hotkey_is_on, prop)
 
     def _hotkey_func_call_safe(self, hotkey, spec, type, event, prop=None):
-        #/
-        if type == HOTKEY_TYPE_V_DN:
-            up_dn_txt = ' down '
-        elif type == HOTKEY_TYPE_V_UP:
-            up_dn_txt = ' up '
-        else:
-            up_dn_txt = ' '
-
-        msg = '#/ {type}{up_dn}triggered\n{virkey}\n\n'.format(
-            type='Hotseq' if type == HOTKEY_TYPE_V_HS else 'Hotkey',
-            up_dn=up_dn_txt,
-            virkey=' '.join(self._vk_ctn(x) or str(x) for x in hotkey),
-        )
-
-        sys.stderr.write(msg)
-
         #/ Spec format is determined at 9o2zOGe
+
+        #/
+        if self._hotkey_tfunc is not None:
+            try:
+                #/ 6xn3KOu
+                self._hotkey_tfunc(self, hotkey, spec, type, event)
+            except Exception:
+                #/
+                tb_msg = get_traceback_stxt()
+
+                sys.stderr.write(
+                    ('#/ Error when calling hotkey pre-handler function\n'
+                     '---\n{}---\n').format(tb_msg)
+                )
+
+        #/ "spec" format is determined at 9o2zOGe
         func = spec[0]
 
         #/

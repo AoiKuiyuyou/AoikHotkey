@@ -3,6 +3,8 @@ from __future__ import absolute_import
 
 import sys
 
+from aoikargutil import ensure_spec
+from aoikexcutil import get_traceback_stxt
 from aoikhotkey.const import SPEC_SWITCH_V_FIRST
 from aoikhotkey.const import SPEC_SWITCH_V_LAST
 from aoikhotkey.const import SPEC_SWITCH_V_NEXT
@@ -12,6 +14,7 @@ from aoikhotkey.const import SpecSwitchExc
 from aoikhotkey.main.argpsr import parser_make
 from aoikhotkey.main.argpsr_const import ARG_DBG_MSG_K
 from aoikhotkey.main.argpsr_const import ARG_HOTKEY_PARSE_URI_K
+from aoikhotkey.main.argpsr_const import ARG_HOTKEY_TFUNC_URI_K
 from aoikhotkey.main.argpsr_const import ARG_REPEAT_ON_K
 from aoikhotkey.main.argpsr_const import ARG_SPEC
 from aoikhotkey.main.argpsr_const import ARG_SPEC_ID_K
@@ -24,6 +27,7 @@ from aoikhotkey.main.argpsr_const import ARG_VK_EXPAND_URI_K
 from aoikhotkey.main.argpsr_const import ARG_VK_NTC_URI_K
 from aoikhotkey.main.argpsr_const import ARG_VK_TRAN_URI_K
 from aoikhotkey.main.main_const import HOTKEY_PARSE_DYN_MOD_NAME
+from aoikhotkey.main.main_const import HOTKEY_TFUNC_DYN_MOD_NAME
 from aoikhotkey.main.main_const import MAIN_RET_V_EXC_LEAK_ER
 from aoikhotkey.main.main_const import MAIN_RET_V_KBINT_OK
 from aoikhotkey.main.main_const import MAIN_RET_V_OK
@@ -44,9 +48,6 @@ from aoikhotkey.spec.util import Quit
 from aoikhotkey.spec.util import SpecReload
 from aoikhotkey.spec.util import SpecSwitch
 from aoikhotkey.version import __version__
-
-from aoikargutil import ensure_spec
-from aoikexcutil import get_traceback_stxt
 from aoikimportutil import load_obj_local_or_remote
 from aoikimportutil import uri_split
 
@@ -191,6 +192,10 @@ def main_imp():
 
         hotkey_parse_mod = None
 
+        hotkey_tfunc = None
+
+        hotkey_tfunc_mod = None
+
         vk_ntc = None
 
         vk_ntc_mod = None
@@ -230,6 +235,43 @@ def main_imp():
                     'Failed loading spec parse function.\n'
                     'Function URI is: {func_uri}.\n'
                 ).format(func_uri=hotkey_parse_uri)
+
+                sys.stderr.write(msg)
+
+                #/
+                if dbg_msg_on:
+                    #/
+                    tb_msg = get_traceback_stxt()
+
+                    sys.stderr.write('---\n{}---\n'\
+                        .format(tb_msg))
+
+                #/
+                is_recovery = True
+
+                continue
+
+            #/
+            hotkey_tfunc_uri = getattr(args_obj, ARG_HOTKEY_TFUNC_URI_K)
+
+            #/
+            try:
+                #/ "sys_use", "sys_add", and "retn_mod" are explained at 2mnIesz.
+                hotkey_tfunc_mod, hotkey_tfunc = load_obj_local_or_remote(
+                    hotkey_tfunc_uri,
+                    mod_name=HOTKEY_TFUNC_DYN_MOD_NAME,
+                    sys_use=sys_use_decide(hotkey_tfunc_uri,
+                        mod_uri_s_reloaded),
+                    sys_add=False,
+                    retn_mod=True,
+                )
+            except Exception:
+                #/
+                msg = (
+                    '#/ Error\n'
+                    'Failed loading hotkey trigger function.\n'
+                    'Function URI is: {func_uri}.\n'
+                ).format(func_uri=hotkey_tfunc_uri)
 
                 sys.stderr.write(msg)
 
@@ -402,6 +444,7 @@ def main_imp():
         #/ 2mLinOP
         manager = HotkeyManager(
             hotkey_parse=hotkey_parse,
+            hotkey_tfunc=hotkey_tfunc,
             vk_ntc=vk_ntc,
             vk_ctn=vk_ctn,
             vk_tran=vk_tran,

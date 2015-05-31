@@ -52,6 +52,16 @@ ARG_HOTKEY_PARSE_URI_H = (
 ).format(default=ARG_HOTKEY_PARSE_URI_D)
 
 #/
+ARG_HOTKEY_TFUNC_URI_F = '-T'
+ARG_HOTKEY_TFUNC_URI_K = '5thyp3L'
+ARG_HOTKEY_TFUNC_URI_D = 'aoikhotkey.spec.tfunc::hotkey_tfunc'
+ARG_HOTKEY_TFUNC_URI_V = 'HOTKEY_TFUNC'
+ARG_HOTKEY_TFUNC_URI_H = (
+    'Hotkey trigger function URI.'
+    ' Default is "{default}".'
+).format(default=ARG_HOTKEY_TFUNC_URI_D)
+
+#/
 ARG_VK_NTC_URI_F = '-n'
 ARG_VK_NTC_URI_K = '4mtINLv'
 ARG_VK_NTC_URI_D = 'aoikhotkey.virkey::vk_ntc'

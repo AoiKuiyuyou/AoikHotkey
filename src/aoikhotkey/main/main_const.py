@@ -25,4 +25,6 @@ SPEC_PARSE_DYN_MOD_NAME = 'aoikhotkey._spec_parse_dyn'
 
 HOTKEY_PARSE_DYN_MOD_NAME = 'aoikhotkey._hotkey_parse_dyn'
 
+HOTKEY_TFUNC_DYN_MOD_NAME = 'aoikhotkey._hotkey_tfunc_dyn'
+
 SPEC_DYN_MOD_NAME = 'aoikhotkey._spec_dyn'
