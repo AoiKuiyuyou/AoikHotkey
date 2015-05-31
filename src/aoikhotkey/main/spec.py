@@ -12,8 +12,8 @@ from aoikhotkey.spec.util import SpecSwitch
 
 #/ 3qMmsJ5
 SPEC = [
-    #/
-    (None, efunc_no_mouse_move),
+    #/ 8fsGDgc
+    ('$', efunc_no_mouse_move),
 
     ('<^q', Quit),
 
