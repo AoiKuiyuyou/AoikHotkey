@@ -7,13 +7,16 @@ aoikdyndocdsl -s README.src.md -n aoikdyndocdsl.ext.all::nto -g README.md
 [:var_set('common_spec_efunc_link', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L39')]\
 [:var_set('common_spec_link2', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L143')]\
 [:var_set('common_spec_link3', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L232')]\
-[:var_set('hotkey_add_link', '/src/aoikhotkey/manager.py#L400')]\
-[:var_set('hotkey_parse_link', '/src/aoikhotkey/spec/parser.py#L233')]\
+[:var_set('hotkey_add_link', '/src/aoikhotkey/manager.py#L404')]\
+[:var_set('hotkey_parse_link', '/src/aoikhotkey/spec/parser.py#L236')]\
+[:var_set('dft_tfunc_link', '/src/aoikhotkey/spec/tfunc.py#L12')]\
+[:var_set('growl_tfunc_link', '/src/aoikhotkey/ext/growl.py#L25')]\
 [:var_set('main_spec_link', '/src/aoikhotkey/main/spec.py#L14')]\
 [:var_set('hook_manager_link', 'https://github.com/Answeror/pyhook_py3k/blob/3a0a1fe8fb190e10761dd80f55a4cf8efd0fb3e3/HookManager.py#L1')]\
+[:var_set('hotkey_tfunc_flag', '-T')]\
 [:var_set('spec_arg_flag', '-s')]\
 [:var_set('spf_arg_flag', '-p')]\
-[:var_set('spf_link', '/src/aoikhotkey/spec/parser.py#L41')]\
+[:var_set('spf_link', '/src/aoikhotkey/spec/parser.py#L42')]\
 [:var_set('vk_ntc_arg_flag', '-n')]\
 [:var_set('vk_ntc_link', '/src/aoikhotkey/virkey.py#L159')]\
 [:var_set('vk_tran_arg_flag', '-t')]\
@@ -25,33 +28,42 @@ aoikdyndocdsl -s README.src.md -n aoikdyndocdsl.ext.all::nto -g README.md
 [:var_set('vk_ntc_full_list_uc', '/src/aoikhotkey/dep/aoikvirkey.py#L271')]\
 [:var_set('vk_ntc_full_list_vk_name', '/src/aoikhotkey/dep/aoikvirkey.py#L6')]\
 [:var_set('vk_ntc_full_list_vk_sname', '/src/aoikhotkey/virkey.py#L114')]\
-[:var_set('quit_link', '/src/aoikhotkey/spec/util.py#L26')]\
+[:var_set('quit_link', '/src/aoikhotkey/spec/util.py#L42')]\
 [:var_set('quit_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L230')]\
-[:var_set('specreload_link', '/src/aoikhotkey/spec/util.py#L30')]\
+[:var_set('specreload_link', '/src/aoikhotkey/spec/util.py#L47')]\
 [:var_set('specreload_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L232')]\
-[:var_set('specswitch_link', '/src/aoikhotkey/spec/util.py#L72')]\
+[:var_set('specswitch_link', '/src/aoikhotkey/spec/util.py#L91')]\
 [:var_set('specswitch_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L273')]\
-[:var_set('eventprop_link', '/src/aoikhotkey/spec/util.py#L76')]\
-[:var_set('eventstop_link', '/src/aoikhotkey/spec/util.py#L83')]\
-[:var_set('cmd_link', '/src/aoikhotkey/spec/util.py#L120')]\
+[:var_set('eventprop_link', '/src/aoikhotkey/spec/util.py#L95')]\
+[:var_set('eventstop_link', '/src/aoikhotkey/spec/util.py#L102')]\
+[:var_set('cmd_link', '/src/aoikhotkey/spec/util.py#L139')]\
 [:var_set('cmd_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L106')]\
-[:var_set('cmd2_link', '/src/aoikhotkey/spec/util.py#L133')]\
+[:var_set('cmd2_link', '/src/aoikhotkey/spec/util.py#L152')]\
 [:var_set('cmd2_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L74')]\
-[:var_set('send_link', '/src/aoikhotkey/spec/util.py#L159')]\
+[:var_set('send_link', '/src/aoikhotkey/spec/util.py#L178')]\
 [:var_set('send_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L87')]\
-[:var_set('send2_link', '/src/aoikhotkey/spec/util.py#L209')]\
+[:var_set('send2_link', '/src/aoikhotkey/spec/util.py#L228')]\
 [:var_set('send2_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L260')]\
-[:var_set('sendsubs_link', '/src/aoikhotkey/spec/util.py#L214')]\
+[:var_set('sendsubs_link', '/src/aoikhotkey/spec/util.py#L233')]\
 [:var_set('sendsubs_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L91')]\
-[:var_set('sleep_link', '/src/aoikhotkey/spec/util.py#L248')]\
+[:var_set('sleep_link', '/src/aoikhotkey/spec/util.py#L267')]\
 [:var_set('sleep_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L117')]\
 [:var_set('efunc_link', '/src/aoikhotkey/spec/efunc.py#L12')]\
 [:var_set('efunc_no_mouse_link', '/src/aoikhotkey/spec/efunc.py#L64')]\
 [:var_set('efunc_no_mouse_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L39')]\
 [:var_set('efunc_no_mouse_move_link', '/src/aoikhotkey/spec/efunc.py#L74')]\
+[:var_set('gkb_icon_url', 'http://www.iconsdb.com/moth-green-icons/keyboard-icon.html')]\
+[:var_set('icons8_url', 'https://icons8.com/')]\
+[:var_set('cc_name', 'Creative Commons Attribution-NoDerivs 3.0 Unported')]\
+[:var_set('cc_url', 'http://creativecommons.org/licenses/by-nd/3.0/')]\
 [:HDLR('heading', 'heading')]\
 # AoikHotkey
 AutoHotkey remake in Python. Hotkey calls Python function.
+
+![Image](/readmedata/aoikhotkey.png?raw=true)
+- The [green keyboard icon]([:var('gkb_icon_url')]) in the image is provided by
+  [icons8]([:var('icons8_url')]) under
+  [[:var('cc_name')]]([:var('cc_url')]).)
 
 Tested working with:
 - Python 2.7 and 3.4
@@ -85,6 +97,21 @@ This means the whole Python language is available at hand, which is more
 See an [example]([:var('common_spec_link')]).
 
 See the details of [hotkey function]([:hd_url('hotkey_func')]).
+
+### Hotkey trigger function
+[:hd_to_key('hk_tfunc_hd')]\
+A **hotkey trigger function** is always called right before the hotkey function
+registered for a hotkey is called.
+
+Hotkey trigger function can be used to implement general things that apply to
+every triggered hotkey.
+
+The default hotkey trigger function is
+[aoikhotkey.spec.tfunc::hotkey_tfunc]([:var('dft_tfunc_link')]). It
+prints information about the triggered hotkey to command console.
+
+Use [argument [:var('hotkey_tfunc_flag')]]([:hd_url('hotkey_tfunc_arg')]) to
+specify a hotkey trigger function.
 
 ### Event function
 Besides hotkey function that is registered for specific hotkey, event function
@@ -132,6 +159,40 @@ Can also be used to do complicated things like reinventing the whole hotkey
  definition syntax.
 
 See the details of [parsing mechanism]([:hd_url('par_mech')]).
+
+### Growl Notification
+![Image](/readmedata/growl.png?raw=true)
+- The [green keyboard icon]([:var('gkb_icon_url')]) in the image is provided by
+  [icons8]([:var('icons8_url')]) under
+  [[:var('cc_name')]]([:var('cc_url')]).)
+
+Support for **Growl** notification is implemented as a
+[hotkey trigger function]([:hd_url('hk_tfunc_hd')]).
+
+The hotkey trigger function is
+ [aoikhotkey.ext.growl::hotkey_tfunc]([:var('growl_tfunc_link')]).
+
+Use [argument [:var('hotkey_tfunc_flag')]]([:hd_url('hotkey_tfunc_arg')]) to
+ specify using it:
+```
+-T aoikhotkey.ext.growl::hotkey_tfunc
+```
+
+This hotkey trigger function requires
+[GNTP Python Library]([:hd_url('7nUDlEo')]) to send notifications, and
+[Growl]([:hd_url('8xZHokt')]) to receive and display the notifications.
+
+#### Setup of Growl
+[:hd_to_key('8xZHokt')]\
+In Windows, use the installer from
+ [www.growlforwindows.com](http://www.growlforwindows.com/gfw/).
+
+#### Setup of GNTP Python Library
+[:hd_to_key('7nUDlEo')]\
+Run:
+```
+pip install git+https://github.com/kfdm/gntp
+```
 
 ## Setup of PyWin32
 Use an installer from [here](http://sourceforge.net/projects/pywin32/files/pywin32/).
@@ -463,6 +524,29 @@ aoikhotkey -s src/aoikhotkey/main/spec.py::SPEC -c src/aoikhotkey/virkey.py::vk_
 
 The default is
  [aoikhotkey.virkey::vk_ctn]([:var('vk_ctn_link')]).
+
+### Specify hotkey trigger function
+[:hd_to_key('hotkey_tfunc_arg')]
+Use argument **-P**
+```
+aoikhotkey -P _OBJ_URI_
+```
+- Replace `_OBJ_URI_` with proper value of yours.
+- `_OBJ_URI_` can be any object URI formats supported by
+   [AoikImportUtil](https://github.com/AoiKuiyuyou/AoikImportUtil-Python#load-object).
+
+E.g.
+```
+aoikhotkey -s aoikhotkey.main.spec::SPEC -T aoikhotkey.spec.tfunc::hotkey_tfunc
+
+aoikhotkey -s src/aoikhotkey/main/spec.py::SPEC -T src/aoikhotkey/spec/tfunc.py::hotkey_tfunc
+```
+- [SPEC]([:var('main_spec_link')])
+- [hotkey_tfunc]([:var('dft_tfunc_link')])
+- Use `LCtrl q` to quit the program.
+
+The default is
+ [aoikhotkey.spec.tfunc::hotkey_tfunc]([:var('dft_tfunc_link')]).
 
 ### Specify repeat mode on/off
 If repeat mode is set off, a repeated key-down event will be ignored. Default is
