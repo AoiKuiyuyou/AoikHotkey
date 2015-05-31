@@ -3,6 +3,8 @@
 #/
 from __future__ import absolute_import
 
+from threading import Thread
+
 import gntp.notifier
 
 from aoikhotkey.const import HOTKEY_TYPE_V_DN
@@ -53,8 +55,12 @@ def hotkey_tfunc(manager, hotkey, spec, type, event):
     )
 
     #/
-    _GROWL_NOTI.notify(
+    th_obj = Thread(target=_GROWL_NOTI.notify, kwargs=dict(
         noteType='New Messages',
         title=title,
         description=description,
-    )
+    ))
+
+    th_obj.setDaemon(True)
+
+    th_obj.start()
