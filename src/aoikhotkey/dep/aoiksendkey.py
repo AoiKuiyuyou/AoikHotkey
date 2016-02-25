@@ -252,9 +252,9 @@ def keys_stroke(
         mod_s_old_diff = list_diff(mod_s_old, mod_s_new)
 
         #/ add new modifier keys
-        vk_idx_max = len(mod_s_new_diff) - 1
+        vk_idx_max = len(mod_s_new) - 1
 
-        for vk_idx, vk in enumerate(mod_s_new_diff):
+        for vk_idx, vk in enumerate(mod_s_new):
             #/
             key_dn_sc(vk)
 
@@ -285,7 +285,7 @@ def keys_stroke(
             key_up_sc(vk)
 
         #/ remove new modifier keys
-        for vk in reversed(mod_s_new_diff):
+        for vk in reversed(mod_s_new):
             key_up_sc(vk)
 
         #/ 2b4sAfM
