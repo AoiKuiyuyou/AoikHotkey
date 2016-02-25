@@ -1,5 +1,7 @@
 # AoikHotkey
-AutoHotkey remake in Python. Hotkey calls Python function.
+Like AutoHotkey. Press a hotkey and call a Python function. Great!
+
+See [my hotkey config file](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L694) to get an idea.
 
 ![Image](/readmedata/aoikhotkey.png?raw=true)
 - The [green keyboard icon](http://www.iconsdb.com/moth-green-icons/keyboard-icon.html) in the image is provided by
@@ -110,7 +112,7 @@ A triggered hotkey calls a Python function.
 This means the whole Python language is available at hand, which is more
  powerful than AutoHotkey's built-in language.
 
-See an [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L37).
+See an [example](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L694).
 
 See the details of [hotkey function](#hotkey-function-1).
 
@@ -132,7 +134,7 @@ specify a hotkey trigger function.
 Besides hotkey function that is registered for specific hotkey, event function
  can be registered to handle all key events.
 
-See an [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L39).
+See an [example](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L700).
 
 See the details of [event function](#event-function-1).
 
@@ -142,8 +144,8 @@ A group of hotkey definitions is called a **spec**.
 [Reloading a spec](#specreload) can be done via hotkey, without
  restarting the program. This is very handy.
 
-See how I use [one hotkey](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L143) to open the editor to
- edit the spec file, and then use [another hotkey](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L232)
+See how I use [one hotkey](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L945) to open the editor to
+ edit the spec file, and then use [another hotkey](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L711)
  to reload the spec.
 
 ### Spec switching via hotkey
@@ -152,13 +154,13 @@ A group of hotkey definitions is called a **spec**.
 AoikHotkey supports specifying multiple specs.
 
 [Switching between specs](#specreload) can be done via hotkey. This
- is very handy and it greatly increaes the utility of hotkeys because same
+ is very handy and it greatly increases the utility of hotkeys because same
  hotkey can do different things in different specs.
 
 ### Similar hotkey definition syntax
 The syntax for hotkey definition is very similar to that of AutoHotkey.
 
-See an [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L37).
+See an [example](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L694).
 
 See the details of [hotkey parse function](#hotkey-parse-function) that
  defines the hotkey definition syntax.
@@ -300,7 +302,7 @@ running the **setup.py** file in the local repository directory.
 ## Quick Usage
 The only argument required by command **aoikhotkey** is a spec object's URI. A
  spec object is a Python list object that contains
- [hotkey definitions](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L37). The
+ [hotkey definitions](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L694). The
  spec object to use is specified by a URI, using [argument -s](#specify-spec-object).
 
 E.g.
@@ -312,8 +314,7 @@ aoikhotkey -s src/aoikhotkey/main/spec.py::SPEC
 - [SPEC](/src/aoikhotkey/main/spec.py#L14)
 
 The **SPEC** object above is just a simple example. See
- [AoikHotkeyDemo](https://github.com/AoiKuiyuyou/AoikHotkeyDemo) for more demo
- specs.
+[my hotkey config file](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L694) for a real example.
 
 ## Program Usage
 - [Show help](#show-help)
@@ -371,8 +372,7 @@ aoikhotkey -s src/aoikhotkey/main/spec.py::SPEC
 - Use `LCtrl q` to quit the program.
 
 The **SPEC** object above is just a simple example. See
- [AoikHotkeyDemo](https://github.com/AoiKuiyuyou/AoikHotkeyDemo) for more demo
- specs.
+[my hotkey config file](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L694) for a real example.
 
 A spec object's format is dependent on the
  [spec parse function](#spec-parse-function) and
@@ -382,7 +382,7 @@ A spec object's format is dependent on the
 A spec can be given a spec ID.
 
 Spec ID is used by built-in hotkey function
- [SpecSwitch](#specswitch) to identify the spec to swicth to.
+ [SpecSwitch](#specswitch) to identify the spec to switch to.
 
 This argument can be used multiple times, each time matching with one spec
  specified by [argument -s](#specify-spec-object), in
@@ -419,11 +419,11 @@ aoikhotkey -s aoikhotkey.main.spec::SPEC -S aoikhotkey.spec.parser::spec_parse
 aoikhotkey -s src/aoikhotkey/main/spec.py::SPEC -S src/aoikhotkey/spec/parser.py::spec_parse
 ```
 - [SPEC](/src/aoikhotkey/main/spec.py#L14)
-- [spec_parse](/src/aoikhotkey/spec/parser.py#L42)
+- [spec_parse](/src/aoikhotkey/spec/parser.py#L43)
 - Use `LCtrl q` to quit the program.
 
 The default is
- [aoikhotkey.spec.parser::spec_parse](/src/aoikhotkey/spec/parser.py#L42).
+ [aoikhotkey.spec.parser::spec_parse](/src/aoikhotkey/spec/parser.py#L43).
 
 ### Specify hotkey parse function
 Hotkey parse function is discussed [here](#hotkey-parse-function).
@@ -443,11 +443,11 @@ aoikhotkey -s aoikhotkey.main.spec::SPEC -p aoikhotkey.spec.parser::hotkey_parse
 aoikhotkey -s src/aoikhotkey/main/spec.py::SPEC -p src/aoikhotkey/spec/parser.py::hotkey_parse
 ```
 - [SPEC](/src/aoikhotkey/main/spec.py#L14)
-- [hotkey_parse](/src/aoikhotkey/spec/parser.py#L236)
+- [hotkey_parse](/src/aoikhotkey/spec/parser.py#L237)
 - Use `LCtrl q` to quit the program.
 
 The default is
- [aoikhotkey.spec.parser::hotkey_parse](/src/aoikhotkey/spec/parser.py#L236).
+ [aoikhotkey.spec.parser::hotkey_parse](/src/aoikhotkey/spec/parser.py#L237).
 
 ### Specify virtual key name-to-code function
 Virtual key name-to-code function is discussed [here](#virtual-key-name-to-code-function).
@@ -640,8 +640,8 @@ First, the spec object specified via [argument -s](#specify-spec-object) is
 The spec object's format is not fixed but should be compatible with the spec
  parse function in use.
 
-Here is an [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L37) of the spec format supported by
- the [default spec parse function](/src/aoikhotkey/spec/parser.py#L42).
+Here is an [example](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L694) of the spec format supported by
+ the [default spec parse function](/src/aoikhotkey/spec/parser.py#L43).
 
 The default spec parse function takes a list of
  (hotkey definition, hotkey function ...) tuples where "hotkey function ..."
@@ -650,7 +650,7 @@ The default spec parse function takes a list of
 The return value's format of a spec parse function is fixed. It should be a list
  of (hotkey definition, hotkey type, hotkey function) tuples. The three values
  of each tuple will then be fed into hotkey manager's method
- [hotkey_add](/src/aoikhotkey/manager.py#L404).
+ [hotkey_add](/src/aoikhotkey/manager.py#L407).
 
 From the input and output of a spec parse function, we can infer that a spec
  parse function usually does two things:
@@ -674,7 +674,7 @@ The default spec parse function does exactly the two things. Meanwhile, it
    `('::abc::', f)`.
 - A beginning `@` means to call the hotkey function in another thread. E.g. spec
    item `('@a', f)` means to call hotkey function `f` in another thread. This is
-   the default behaviour so `@` needs not be specified explicitly.
+   the default behavior so `@` needs not be specified explicitly.
 - A beginning `$` means to call the hotkey function in the same thread. E.g.
    spec item `('$a', f)` means to call hotkey function `f` in the same thread.
 - `@` or `$` can be combined with either `~` or `::`. `~` and `::` can not be
@@ -689,7 +689,7 @@ The special syntax recognized by a spec parse function should be removed from
 As mentioned in section [Spec parse function](#spec-parse-function), hotkey definition, hotkey type,
  and hotkey function in each of the tuples returned from the spec parse function
  in use is then fed into hotkey manager's method
- [hotkey_add](/src/aoikhotkey/manager.py#L404). Inside this method, the hotkey
+ [hotkey_add](/src/aoikhotkey/manager.py#L407). Inside this method, the hotkey
  definition is parsed by the hotkey parse function in use.
 
 The hotkey parse function in use can be specified via [argument -p](#specify-hotkey-parse-function).
@@ -704,7 +704,7 @@ A hotkey parse function is required to take three arguments:
 It is the hotkey parse function in use that defines the syntax of the hotkey
  definition.
 
-The default [hotkey parse function](/src/aoikhotkey/spec/parser.py#L236) supports a
+The default [hotkey parse function](/src/aoikhotkey/spec/parser.py#L237) supports a
  syntax that is very similar to that of AutoHotkey:
 - `^`, `!`, `+` and `#` mean Control, Alt, Shift and Win keys, respectively.
 - A `<` or `>` preceding any of the four keys above converts the key into its
@@ -834,7 +834,7 @@ Unlike AutoHotkey's key-sequence hotkey that always does text substitution,
 Unlike AutoHotkey's key-sequence hotkey that is triggered by an extra space
  after the target key sequence, AoikHotkey's key-sequence hotkey is triggered
  as soon as the target key sequence is typed. To resemble AutoHotkey's extra
- space behaviour, simply add a space to the end of a hotkey definition.
+ space behavior, simply add a space to the end of a hotkey definition.
 
 ### Hotkey function
 A hotkey function can either take no argument, or take one argument: the event
@@ -842,10 +842,10 @@ A hotkey function can either take no argument, or take one argument: the event
 
 A hotkey function's return value matters.
 - If the last hotkey function returns non-True, the key event is not propagated
-   to the foreground window. This is the recommended default behaviour.
+   to the foreground window. This is the recommended default behavior.
 - If the last hotkey function returns True, the key event is propagated
    to the foreground window.
-- If any hotkey function returns False, follwing hotkey functions (if any) will
+- If any hotkey function returns False, following hotkey functions (if any) will
    not be called. And the key event is not propagated to the foreground window.
 
 ### Built-in hotkey functions
@@ -864,27 +864,27 @@ A hotkey function's return value matters.
 #### Quit
 Quit the program.
 
-See the [code](/src/aoikhotkey/spec/util.py#L42) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L230).
+See the [code](/src/aoikhotkey/spec/util.py#L60).
 
 #### SpecReload
 Reload the current spec.
 
-See the [code](/src/aoikhotkey/spec/util.py#L47) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L232).
+See the [code](/src/aoikhotkey/spec/util.py#L65) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L711).
 
 #### SpecSwitch
 Switch to a spec.
 
-See the [code](/src/aoikhotkey/spec/util.py#L91) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L273).
+See the [code](/src/aoikhotkey/spec/util.py#L109) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L1196).
 
 #### EventProp
 Return True so that a key event is propagated to next handler.
 
-See the [code](/src/aoikhotkey/spec/util.py#L95).
+See the [code](/src/aoikhotkey/spec/util.py#L113).
 
 #### EventStop
 Return False so that a key event is not propagated to next handler.
 
-See the [code](/src/aoikhotkey/spec/util.py#L102).
+See the [code](/src/aoikhotkey/spec/util.py#L120).
 
 #### Cmd
 Run a command.
@@ -898,7 +898,7 @@ If a command can not be well split on space, e.g. it has space inside some
  argument, you can either specify another separator, or use
  [Cmd2](#cmd2) instead.
 
-See the [code](/src/aoikhotkey/spec/util.py#L139) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L106).
+See the [code](/src/aoikhotkey/spec/util.py#L157).
 
 #### Cmd2
 Run a command.
@@ -908,12 +908,12 @@ It takes a variable-list (e.g. *args, not a list object) of command components.
 
 Command components can have spaces inside them.
 
-See the [code](/src/aoikhotkey/spec/util.py#L152) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L74).
+See the [code](/src/aoikhotkey/spec/util.py#L170) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L1102).
 
 #### Send
 Send keys. Similar to AutoHotkey's **Send** function.
 
-See the [code](/src/aoikhotkey/spec/util.py#L178) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L87).
+See the [code](/src/aoikhotkey/spec/util.py#L196) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L1243).
 
 #### Send2
 [Send](#send) with the **imod_dn** option set on.
@@ -927,7 +927,7 @@ After sending the keys, if the **imod_dn** option is set on, **Send** will
  hotkey's modifier keys have been released already (even though you are still
  physically pressing on them).
 
-See the [code](/src/aoikhotkey/spec/util.py#L228) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L260).
+See the [code](/src/aoikhotkey/spec/util.py#L252) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L913).
 
 #### SendSubs
 
@@ -936,7 +936,7 @@ Send substitution text. Used together with a
  of text substitution. Similar to what key-sequence hotkey (e.g. `::abc::`) does
  in AutoHotkey.
 
-See the [code](/src/aoikhotkey/spec/util.py#L233) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L91).
+See the [code](/src/aoikhotkey/spec/util.py#L257) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L907).
 
 #### Sleep
 Sleep for a while. Similar to AutoHotkey's **Sleep** function.
@@ -944,7 +944,7 @@ Sleep for a while. Similar to AutoHotkey's **Sleep** function.
 Note sleep will block the current thread. If the sleep time is long, you might
  want to run the hotkey function in [another thread](#spec-parse-function).
 
-See the [code](/src/aoikhotkey/spec/util.py#L267) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L117).
+See the [code](/src/aoikhotkey/spec/util.py#L332).
 
 ### Event function
 If a hotkey definition is None, the hotkey function becomes an event function.
@@ -971,7 +971,7 @@ See the [code](/src/aoikhotkey/spec/efunc.py#L12).
 #### efunc_no_mouse
 Print message about every key event except mouse events.
 
-See the [code](/src/aoikhotkey/spec/efunc.py#L64) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L39).
+See the [code](/src/aoikhotkey/spec/efunc.py#L64) and [example](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L700).
 
 #### efunc_no_mouse_move
 Print message about every key event except mouse move events.
@@ -996,9 +996,9 @@ If you run it in a Windows CMD console as I do, and the CMD console's
 This is because when clicking inside a CMD console with **QuickEdit** mode on,
  the AoikHotkey program running in it gets paused. The pause does not play well
  with pyHook and Windows. As a result, Windows (the whole GUI environment)
- becomes almost irresponsive.
+ becomes almost unresponsive.
 
 In case this unfortunate situation does happen to you, try press ESC or clicking
  your mouse outside the CMD console (you can not see it because the Windows GUI
- is irresponsive) to get your cursor out of the CMD console. If these do not
+ is unresponsive) to get your cursor out of the CMD console. If these do not
  work, press "Ctrl Alt Del" and select "Log off" would save you a reboot.

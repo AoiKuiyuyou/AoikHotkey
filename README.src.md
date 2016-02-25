@@ -1,64 +1,63 @@
-[:var_set('', """
+[:vs2('', """
 #/ Compile command
-aoikdyndocdsl -s README.src.md -n aoikdyndocdsl.ext.all::nto -g README.md
+aoikdyndocdsl -s README.src.md -n readme_nto.py::nto -g README.md
 """)
 ]\
-[:var_set('common_spec_link', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L37')]\
-[:var_set('common_spec_efunc_link', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L39')]\
-[:var_set('common_spec_link2', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L143')]\
-[:var_set('common_spec_link3', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L232')]\
-[:var_set('hotkey_add_link', '/src/aoikhotkey/manager.py#L404')]\
-[:var_set('hotkey_parse_link', '/src/aoikhotkey/spec/parser.py#L236')]\
-[:var_set('dft_tfunc_link', '/src/aoikhotkey/spec/tfunc.py#L12')]\
-[:var_set('growl_tfunc_link', '/src/aoikhotkey/ext/growl.py#L25')]\
-[:var_set('main_spec_link', '/src/aoikhotkey/main/spec.py#L14')]\
-[:var_set('hook_manager_link', 'https://github.com/Answeror/pyhook_py3k/blob/3a0a1fe8fb190e10761dd80f55a4cf8efd0fb3e3/HookManager.py#L1')]\
-[:var_set('hotkey_tfunc_flag', '-T')]\
-[:var_set('spec_arg_flag', '-s')]\
-[:var_set('spf_arg_flag', '-p')]\
-[:var_set('spf_link', '/src/aoikhotkey/spec/parser.py#L42')]\
-[:var_set('vk_ntc_arg_flag', '-n')]\
-[:var_set('vk_ntc_link', '/src/aoikhotkey/virkey.py#L159')]\
-[:var_set('vk_tran_arg_flag', '-t')]\
-[:var_set('vk_tran_link', '/src/aoikhotkey/virkey.py#L235')]\
-[:var_set('vk_expand_arg_flag', '-e')]\
-[:var_set('vk_expand_link', '/src/aoikhotkey/virkey.py#L222')]\
-[:var_set('vk_ctn_link', '/src/aoikhotkey/virkey.py#L197')]\
-[:var_set('vk_ntc_full_list_lc', '/src/aoikhotkey/dep/aoikvirkey.py#L209')]\
-[:var_set('vk_ntc_full_list_uc', '/src/aoikhotkey/dep/aoikvirkey.py#L271')]\
-[:var_set('vk_ntc_full_list_vk_name', '/src/aoikhotkey/dep/aoikvirkey.py#L6')]\
-[:var_set('vk_ntc_full_list_vk_sname', '/src/aoikhotkey/virkey.py#L114')]\
-[:var_set('quit_link', '/src/aoikhotkey/spec/util.py#L42')]\
-[:var_set('quit_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L230')]\
-[:var_set('specreload_link', '/src/aoikhotkey/spec/util.py#L47')]\
-[:var_set('specreload_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L232')]\
-[:var_set('specswitch_link', '/src/aoikhotkey/spec/util.py#L91')]\
-[:var_set('specswitch_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L273')]\
-[:var_set('eventprop_link', '/src/aoikhotkey/spec/util.py#L95')]\
-[:var_set('eventstop_link', '/src/aoikhotkey/spec/util.py#L102')]\
-[:var_set('cmd_link', '/src/aoikhotkey/spec/util.py#L139')]\
-[:var_set('cmd_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L106')]\
-[:var_set('cmd2_link', '/src/aoikhotkey/spec/util.py#L152')]\
-[:var_set('cmd2_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L74')]\
-[:var_set('send_link', '/src/aoikhotkey/spec/util.py#L178')]\
-[:var_set('send_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L87')]\
-[:var_set('send2_link', '/src/aoikhotkey/spec/util.py#L228')]\
-[:var_set('send2_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L260')]\
-[:var_set('sendsubs_link', '/src/aoikhotkey/spec/util.py#L233')]\
-[:var_set('sendsubs_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L91')]\
-[:var_set('sleep_link', '/src/aoikhotkey/spec/util.py#L267')]\
-[:var_set('sleep_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L117')]\
-[:var_set('efunc_link', '/src/aoikhotkey/spec/efunc.py#L12')]\
-[:var_set('efunc_no_mouse_link', '/src/aoikhotkey/spec/efunc.py#L64')]\
-[:var_set('efunc_no_mouse_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyDemo/blob/0.1.1/src/aoikhotkeydemo/common/spec.py#L39')]\
-[:var_set('efunc_no_mouse_move_link', '/src/aoikhotkey/spec/efunc.py#L74')]\
-[:var_set('gkb_icon_url', 'http://www.iconsdb.com/moth-green-icons/keyboard-icon.html')]\
-[:var_set('icons8_url', 'https://icons8.com/')]\
-[:var_set('cc_name', 'Creative Commons Attribution-NoDerivs 3.0 Unported')]\
-[:var_set('cc_url', 'http://creativecommons.org/licenses/by-nd/3.0/')]\
+[:vs2('common_spec_link', 'https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L694')]\
+[:vs2('common_spec_efunc_link', 'https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L700')]\
+[:vs2('common_spec_link2', 'https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L945')]\
+[:vs2('common_spec_link3', 'https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L711')]\
+[:vs2('hotkey_add_link', '/src/aoikhotkey/manager.py#L407', code='def hotkey_add(')]\
+[:vs2('hotkey_parse_link', '/src/aoikhotkey/spec/parser.py#L237', code='def hotkey_parse(')]\
+[:vs2('dft_tfunc_link', '/src/aoikhotkey/spec/tfunc.py#L12', code='def hotkey_tfunc(')]\
+[:vs2('growl_tfunc_link', '/src/aoikhotkey/ext/growl.py#L25', code='def hotkey_tfunc(')]\
+[:vs2('main_spec_link', '/src/aoikhotkey/main/spec.py#L14', code='SPEC =')]\
+[:vs2('hook_manager_link', 'https://github.com/Answeror/pyhook_py3k/blob/3a0a1fe8fb190e10761dd80f55a4cf8efd0fb3e3/HookManager.py#L1')]\
+[:vs2('hotkey_tfunc_flag', '-T')]\
+[:vs2('spec_arg_flag', '-s')]\
+[:vs2('spf_arg_flag', '-p')]\
+[:vs2('spf_link', '/src/aoikhotkey/spec/parser.py#L43', code='def spec_parse(')]\
+[:vs2('vk_ntc_arg_flag', '-n')]\
+[:vs2('vk_ntc_link', '/src/aoikhotkey/virkey.py#L159', code='def vk_ntc(')]\
+[:vs2('vk_tran_arg_flag', '-t')]\
+[:vs2('vk_tran_link', '/src/aoikhotkey/virkey.py#L235', code='def vk_tran(')]\
+[:vs2('vk_expand_arg_flag', '-e')]\
+[:vs2('vk_expand_link', '/src/aoikhotkey/virkey.py#L222', code='def vk_expand(')]\
+[:vs2('vk_ctn_link', '/src/aoikhotkey/virkey.py#L197', code='def vk_ctn')]\
+[:vs2('vk_ntc_full_list_lc', '/src/aoikhotkey/dep/aoikvirkey.py#L209', code='CHAR_TO_VK_D =')]\
+[:vs2('vk_ntc_full_list_uc', '/src/aoikhotkey/dep/aoikvirkey.py#L271', code='UPCHAR_TO_VK_D =')]\
+[:vs2('vk_ntc_full_list_vk_name', '/src/aoikhotkey/dep/aoikvirkey.py#L6', code='VK_LBUTTON =')]\
+[:vs2('vk_ntc_full_list_vk_sname', '/src/aoikhotkey/virkey.py#L114', code='EVK_NAME_TO_CODE_D =')]\
+[:vs2('quit_link', '/src/aoikhotkey/spec/util.py#L60', code='def Quit(')]\
+[:vs2('specreload_link', '/src/aoikhotkey/spec/util.py#L65', code='def SpecReload(')]\
+[:vs2('specreload_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L711')]\
+[:vs2('specswitch_link', '/src/aoikhotkey/spec/util.py#L109', code='def SpecSwitch(')]\
+[:vs2('specswitch_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L1196')]\
+[:vs2('eventprop_link', '/src/aoikhotkey/spec/util.py#L113', code='def EventProp(')]\
+[:vs2('eventstop_link', '/src/aoikhotkey/spec/util.py#L120', code='def EventStop(')]\
+[:vs2('cmd_link', '/src/aoikhotkey/spec/util.py#L157', code='class Cmd(')]\
+[:vs2('cmd2_link', '/src/aoikhotkey/spec/util.py#L170', code='class Cmd2(')]\
+[:vs2('cmd2_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L1102')]\
+[:vs2('send_link', '/src/aoikhotkey/spec/util.py#L196', code='class Send(')]\
+[:vs2('send_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L1243')]\
+[:vs2('send2_link', '/src/aoikhotkey/spec/util.py#L252', code='Send2 =')]\
+[:vs2('send2_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L913')]\
+[:vs2('sendsubs_link', '/src/aoikhotkey/spec/util.py#L257', code='class SendSubs(')]\
+[:vs2('sendsubs_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L907')]\
+[:vs2('sleep_link', '/src/aoikhotkey/spec/util.py#L332', code='def Sleep(')]\
+[:vs2('efunc_link', '/src/aoikhotkey/spec/efunc.py#L12', code='def efunc(')]\
+[:vs2('efunc_no_mouse_link', '/src/aoikhotkey/spec/efunc.py#L64', code='def efunc_no_mouse(')]\
+[:vs2('efunc_no_mouse_eg', 'https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/0.1.0/config/spec_main.py#L700')]\
+[:vs2('efunc_no_mouse_move_link', '/src/aoikhotkey/spec/efunc.py#L74', code='def efunc_no_mouse_move(')]\
+[:vs2('gkb_icon_url', 'http://www.iconsdb.com/moth-green-icons/keyboard-icon.html')]\
+[:vs2('icons8_url', 'https://icons8.com/')]\
+[:vs2('cc_name', 'Creative Commons Attribution-NoDerivs 3.0 Unported')]\
+[:vs2('cc_url', 'http://creativecommons.org/licenses/by-nd/3.0/')]\
 [:HDLR('heading', 'heading')]\
 # AoikHotkey
-AutoHotkey remake in Python. Hotkey calls Python function.
+Like AutoHotkey. Press a hotkey and call a Python function. Great!
+
+See [my hotkey config file]([:v('common_spec_link')]) to get an idea.
 
 ![Image](/readmedata/aoikhotkey.png?raw=true)
 - The [green keyboard icon]([:var('gkb_icon_url')]) in the image is provided by
@@ -137,7 +136,7 @@ A group of hotkey definitions is called a **spec**.
 AoikHotkey supports specifying multiple specs.
 
 [Switching between specs]([:hd_url('spec_reload')]) can be done via hotkey. This
- is very handy and it greatly increaes the utility of hotkeys because same
+ is very handy and it greatly increases the utility of hotkeys because same
  hotkey can do different things in different specs.
 
 ### Similar hotkey definition syntax
@@ -297,8 +296,7 @@ aoikhotkey -s src/aoikhotkey/main/spec.py::SPEC
 - [SPEC]([:var('main_spec_link')])
 
 The **SPEC** object above is just a simple example. See
- [AoikHotkeyDemo](https://github.com/AoiKuiyuyou/AoikHotkeyDemo) for more demo
- specs.
+[my hotkey config file]([:v('common_spec_link')]) for a real example.
 
 ## Program Usage
 [:tod()]
@@ -345,8 +343,7 @@ aoikhotkey -s src/aoikhotkey/main/spec.py::SPEC
 - Use `LCtrl q` to quit the program.
 
 The **SPEC** object above is just a simple example. See
- [AoikHotkeyDemo](https://github.com/AoiKuiyuyou/AoikHotkeyDemo) for more demo
- specs.
+[my hotkey config file]([:v('common_spec_link')]) for a real example.
 
 A spec object's format is dependent on the
  [spec parse function]([:hd_url('spf')]) and
@@ -356,7 +353,7 @@ A spec object's format is dependent on the
 A spec can be given a spec ID.
 
 Spec ID is used by built-in hotkey function
- [SpecSwitch]([:hd_url('spec_switch')]) to identify the spec to swicth to.
+ [SpecSwitch]([:hd_url('spec_switch')]) to identify the spec to switch to.
 
 This argument can be used multiple times, each time matching with one spec
  specified by [argument [:var('spec_arg_flag')]]([:hd_url('spec_arg')]), in
@@ -645,7 +642,7 @@ The default spec parse function does exactly the two things. Meanwhile, it
    `('::abc::', f)`.
 - A beginning `@` means to call the hotkey function in another thread. E.g. spec
    item `('@a', f)` means to call hotkey function `f` in another thread. This is
-   the default behaviour so `@` needs not be specified explicitly.
+   the default behavior so `@` needs not be specified explicitly.
 - A beginning `$` means to call the hotkey function in the same thread. E.g.
    spec item `('$a', f)` means to call hotkey function `f` in the same thread.
 - `@` or `$` can be combined with either `~` or `::`. `~` and `::` can not be
@@ -811,7 +808,7 @@ Unlike AutoHotkey's key-sequence hotkey that always does text substitution,
 Unlike AutoHotkey's key-sequence hotkey that is triggered by an extra space
  after the target key sequence, AoikHotkey's key-sequence hotkey is triggered
  as soon as the target key sequence is typed. To resemble AutoHotkey's extra
- space behaviour, simply add a space to the end of a hotkey definition.
+ space behavior, simply add a space to the end of a hotkey definition.
 
 ### Hotkey function
 [:hd_to_key('hotkey_func')]\
@@ -820,10 +817,10 @@ A hotkey function can either take no argument, or take one argument: the event
 
 A hotkey function's return value matters.
 - If the last hotkey function returns non-True, the key event is not propagated
-   to the foreground window. This is the recommended default behaviour.
+   to the foreground window. This is the recommended default behavior.
 - If the last hotkey function returns True, the key event is propagated
    to the foreground window.
-- If any hotkey function returns False, follwing hotkey functions (if any) will
+- If any hotkey function returns False, following hotkey functions (if any) will
    not be called. And the key event is not propagated to the foreground window.
 
 ### Built-in hotkey functions
@@ -833,7 +830,7 @@ A hotkey function's return value matters.
 [:hd_to_key('quit')]\
 Quit the program.
 
-See the [code]([:var('quit_link')]) and [example]([:var('quit_eg')]).
+See the [code]([:var('quit_link')]).
 
 #### SpecReload
 [:hd_to_key('spec_reload')]\
@@ -869,7 +866,7 @@ If a command can not be well split on space, e.g. it has space inside some
  argument, you can either specify another separator, or use
  [Cmd2]([:hd_url('cmd2')]) instead.
 
-See the [code]([:var('cmd_link')]) and [example]([:var('cmd_eg')]).
+See the [code]([:var('cmd_link')]).
 
 #### Cmd2
 [:hd_to_key('cmd2')]\
@@ -917,7 +914,7 @@ Sleep for a while. Similar to AutoHotkey's **Sleep** function.
 Note sleep will block the current thread. If the sleep time is long, you might
  want to run the hotkey function in [another thread]([:hd_url('spf')]).
 
-See the [code]([:var('sleep_link')]) and [example]([:var('sleep_eg')]).
+See the [code]([:var('sleep_link')]).
 
 ### Event function
 [:hd_to_key('event_func')]\
@@ -968,9 +965,9 @@ If you run it in a Windows CMD console as I do, and the CMD console's
 This is because when clicking inside a CMD console with **QuickEdit** mode on,
  the AoikHotkey program running in it gets paused. The pause does not play well
  with pyHook and Windows. As a result, Windows (the whole GUI environment)
- becomes almost irresponsive.
+ becomes almost unresponsive.
 
 In case this unfortunate situation does happen to you, try press ESC or clicking
  your mouse outside the CMD console (you can not see it because the Windows GUI
- is irresponsive) to get your cursor out of the CMD console. If these do not
+ is unresponsive) to get your cursor out of the CMD console. If these do not
  work, press "Ctrl Alt Del" and select "Log off" would save you a reboot.
