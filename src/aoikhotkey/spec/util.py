@@ -13,6 +13,7 @@ from aoikhotkey.const import SpecSwitchExc
 from aoikhotkey.runtime import manager_get
 from aoikhotkey.virkey import EVK_WIN
 from aoiksendkey import keys_stroke
+from aoikvirkey import VK_BACK
 from aoikvirkey import VK_CONTROL
 from aoikvirkey import VK_LCONTROL
 from aoikvirkey import VK_LMENU
@@ -20,6 +21,8 @@ from aoikvirkey import VK_LSHIFT
 from aoikvirkey import VK_LWIN
 from aoikvirkey import VK_MENU
 from aoikvirkey import VK_SHIFT
+from aoikvirkey import char_to_vk
+from aoikvirkey import upchar_to_vk
 
 
 #/
@@ -194,8 +197,14 @@ class Send(object):
 
     #/
     def __init__(self, hotkey, emask=None, **kwargs):
+        #
+        parse_yes = kwargs.pop('parse_yes', True)
+
         #/
-        self._hotkey_vk_s = self._hotkey_parse(hotkey)
+        if parse_yes:
+            self._hotkey_vk_s = self._hotkey_parse(hotkey)
+        else:
+            self._hotkey_vk_s = hotkey
 
         #/
         self._kwargs = kwargs
@@ -250,24 +259,65 @@ class SendSubs(NeedHotkeyInfo):
     #/
     def __init__(self, keys, **kwargs):
         #/
+        self._kwargs = kwargs
+
+        #/
         self._keys = keys
 
         #/ initialized by 3xa2sHI
-        self._back_len = 0
+        back_len = kwargs.pop('back_len', None)
 
-        #/
-        self._kwargs = kwargs
+        self._back_len = back_len
+
+        #
+        self.raw_yes = kwargs.pop('raw_yes', False)
+
+        #
+        if self.raw_yes:
+            #
+            self._keys = []
+
+            for key in keys:
+                vk = char_to_vk(key)
+
+                if vk is not None:
+                    self._keys.append(vk)
+                else:
+                    vk = upchar_to_vk(key)
+
+                    assert vk is not None
+
+                    self._keys.append(VK_LSHIFT)
+
+                    self._keys.append(vk)
+
+            #
+            self._kwargs['parse_yes'] = False
+
+        else:
+            #
+            self._keys = keys
+
+            #
+            self._kwargs['parse_yes'] = True
 
     #/
     def __call__(self):
         #/ 4o5hvxR
-        key_s = '{VK_BACK}' * self._back_len + self._keys
+        if self.raw_yes:
+            key_s = [VK_BACK] * self._back_len + self._keys
+        else:
+            key_s = '{VK_BACK}' * self._back_len + self._keys
 
         Send(key_s, **self._kwargs)()
 
     #/ 3xa2sHI
     #/ called by spec parser at 2cZm56O
     def hotkey_info_set(self, hotkey):
+        #
+        if self._back_len is not None:
+            return
+
         #/
         hotkey_vk_s = manager_get().hotkey_parse(hotkey)
 
