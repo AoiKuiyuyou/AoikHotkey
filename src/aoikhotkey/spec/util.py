@@ -38,6 +38,21 @@ def main_thread_tag_is_on(func):
     return getattr(func, MAIN_THREAD_TAG_K, False)
 
 #/
+NEED_EVENT_INFO_TAG_K = '_AOIKHOTKEY_NEED_EVENT_INFO_TAG'
+
+#/ Decorator
+def need_event_info_tag_set(func):
+    #/
+    setattr(func, NEED_EVENT_INFO_TAG_K, True)
+
+    #/
+    return func
+
+#/
+def need_event_info_tag_get(func):
+    return getattr(func, NEED_EVENT_INFO_TAG_K, False)
+
+#/
 @main_thread
 def Quit():
     manager_get().eloop_end()

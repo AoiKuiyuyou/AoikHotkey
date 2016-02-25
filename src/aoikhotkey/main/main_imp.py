@@ -47,6 +47,7 @@ from aoikhotkey.spec.parser import spec_parse as recovery_spec_parse
 from aoikhotkey.spec.util import Quit
 from aoikhotkey.spec.util import SpecReload
 from aoikhotkey.spec.util import SpecSwitch
+from aoikhotkey.task_queue import task_queue_thread_start
 from aoikhotkey.version import __version__
 from aoikimportutil import load_obj_local_or_remote
 from aoikimportutil import uri_split
@@ -180,6 +181,9 @@ def main_imp():
 
         #/
         return sys_use
+
+    #/
+    task_queue_thread_start()
 
     #/ loop is for implementing "reloading spec" on catching a SpecReloadExc or
     ##  SpecSwitchExc

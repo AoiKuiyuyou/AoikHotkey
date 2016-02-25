@@ -9,6 +9,7 @@ import ctypes
 from functools import partial
 import sys
 
+from pyHook import HookManager
 from win32gui import PumpMessages
 
 from aoikexcutil import get_traceback_stxt
@@ -20,6 +21,9 @@ from aoikhotkey.const import HOTKEY_TYPE_V_DN
 from aoikhotkey.const import HOTKEY_TYPE_V_HS
 from aoikhotkey.const import HOTKEY_TYPE_V_UP
 from aoikhotkey.spec.parser import hotkey_parse as hotkey_parse_dft
+from aoikhotkey.spec.util import main_thread_tag_is_on
+from aoikhotkey.spec.util import need_event_info_tag_get
+import aoikhotkey.task_queue as task_queue
 from aoikhotkey.virkey import EVK_MOUSE_WHEEL_DOWN
 from aoikhotkey.virkey import EVK_MOUSE_WHEEL_UP
 from aoikhotkey.virkey import vk_ctn as vk_ctn_dft
@@ -27,9 +31,8 @@ from aoikhotkey.virkey import vk_expand as vk_expand_dft
 from aoikhotkey.virkey import vk_mouse_up_to_dn
 from aoikhotkey.virkey import vk_ntc as vk_ntc_dft
 from aoikhotkey.virkey import vk_tran as vk_tran_dft
+from aoikvirkey import VK_MOUSE_MOVE
 from aoikvirkey import VK_MOUSE_WHEEL
-from pyHook import HookManager
-
 
 #/
 class HotkeyManager(object):
@@ -548,16 +551,18 @@ class HotkeyManager(object):
 
         #/
         try:
-            try:
-                prop = func()
-            #/ if TypeError occurs, assumes the function needs "event" argument
-            except TypeError:
-                prop = func(event)
+            if not main_thread_tag_is_on(func):
+                task_queue.TASK_QUEUE.put((func, event))
+            else:
+                if need_event_info_tag_get(func):
+                    prop = func(event)
+                else:
+                    prop = func()
         except Exception:
             #/
             tb_msg = get_traceback_stxt()
 
-            sys.stderr.write('#/ Error when calling function\n---\n{}---\n'\
+            sys.stderr.write('#/ Error when calling function in main thread\n---\n{}---\n'\
                 .format(tb_msg))
 
         #/
