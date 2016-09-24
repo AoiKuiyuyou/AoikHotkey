@@ -1,0 +1,40 @@
+{
+    "folders": [
+        {
+            "path": "../../",
+            "folder_exclude_patterns": [
+                "*.egg-info",
+                "*_venv.py*",
+                "__*__",
+                ".cache",
+                "build*",
+                "dist",
+                "tools/waf/waf?-*"
+            ],
+            "file_exclude_patterns": [
+                "*.log",
+                ".lock-waf*"
+            ]
+        }
+    ],
+    "build_systems": [
+        {
+            "name": "pwd",
+            "cmd": [
+                "pwd"
+            ],
+            "shell": true,
+            "working_dir": "."
+        }
+    ],
+    "settings": {
+        "tab_size": 4,
+        "translate_tabs_to_spaces": true,
+        "detect_indentation": true,
+        "auto_indent": true,
+        "smart_indent": true,
+        "trim_automatic_white_space": true,
+        "trim_trailing_white_space_on_save": true,
+        "use_tab_stops": true
+    }
+}

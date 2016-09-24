@@ -1,11 +1,13 @@
 /*
 !/.gitignore
-!/readmedata
+!/screenshot
 !/src
+!/tools
 !/LICENSE.txt
 !/README.md
 !/README.src.md
 !/readme_nto.py
+!/setup.cfg
 !/setup.py
 ~*
 *.pyc
