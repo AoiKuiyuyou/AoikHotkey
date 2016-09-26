@@ -15,13 +15,15 @@ Tested working with:
   - [Setup via pip](#setup-via-pip)
   - [Setup via git](#setup-via-git)
   - [Setup for MacOS](#setup-for-macos)
+- [Usage](#usage)
   - [Run program](#run-program)
+  - [Specify hotkey config](#specify-hotkey-config)
+  - [Send notifications to Growl](#send-notifications-to-growl)
 
 ## Setup
 - [Setup via pip](#setup-via-pip)
 - [Setup via git](#setup-via-git)
 - [Setup for MacOS](#setup-for-macos)
-- [Run program](#run-program)
 
 ### Setup via pip
 Run:
@@ -50,6 +52,11 @@ control your computer. First run AoikHotkey in the terminal, then go to
 `System Preferences - Security & Privacy - Accessibility`, and enable the terminal
 program in the list.
 
+## Usage
+- [Run program](#run-program)
+- [Specify hotkey config](#specify-hotkey-config)
+- [Send notifications to Growl](#send-notifications-to-growl)
+
 ### Run program
 Run:
 ```
@@ -62,4 +69,66 @@ python -m aoikhotkey
 Or:
 ```
 python src/aoikhotkey/__main__.py
+```
+
+### Specify hotkey config
+Create hotkey config file `hotkey_config.py` (see [my hotkey config](https://github.com/AoiKuiyuyou/AoikHotkeyHowto) for ideas):
+```
+# coding: utf-8
+"""
+This module contains hotkey spec list.
+"""
+from __future__ import absolute_import
+
+# Internal imports
+from aoikhotkey.util.cmd import Quit
+from aoikhotkey.util.cmd import SpecReload
+from aoikhotkey.util.efunc import efunc_no_mouse
+
+
+SPEC = [
+    # ----- Event function -----
+
+    # None means event function
+    (None, efunc_no_mouse),
+
+    # ----- ESC -----
+
+    # Quit AoikHotkey.
+    # Hotkey: ESC
+    ('{ESC}', Quit),
+
+    # Reload hotkey spec list.
+    # Hotkey: SHIFT+ESC
+    ('+{ESC}', SpecReload),
+
+    # ----- F1 -----
+
+    # Open URL.
+    # Hotkey: F1
+    ('F1', 'https://github.com/'),
+
+    # Open file.
+    # Hotkey: CTRL+F1
+    ('^F1', 'C:/Windows/win.ini'),
+
+    # Open directory.
+    # Hotkey: ALT+F1
+    ('!F1', '/'),
+
+    # Open program.
+    # Hotkey: WIN+F1
+    ('#F1', 'notepad.exe'),
+]
+```
+
+Run:
+```
+aoikhotkey -s hotkey_config.py::SPEC
+```
+
+### Send notifications to Growl
+Run:
+```
+aoikhotkey -s hotkey_config.py::SPEC -t aoikhotkey.util.growl::hotkey_tfunc
 ```
