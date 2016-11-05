@@ -10,6 +10,7 @@ from collections import deque
 from contextlib import contextmanager
 from functools import partial
 import sys
+import time
 from traceback import format_exc
 
 # Local imports
@@ -642,18 +643,15 @@ class HotkeyManager(object):
             # Get the event's virtual key
             vk = event.KeyID
 
-        try:
-            # Remove the virtual key from the currently down list to avoid
-            # adding duplicate below
-            self._vk_s_dn.remove(vk)
+        # Remove the virtual key from the currently down list to avoid adding
+        # duplicate below
+        self._vk_down_remove(vk)
 
-        # If the virtual key is not in the currently down list
-        except ValueError:
-            # Ignore
-            pass
+        # Remove outdated virtual keys from currently down list
+        self._vk_down_remove_outdated()
 
         # Add the virtual key to the currently down list
-        self._vk_s_dn.append(vk)
+        self._vk_down_add(vk)
 
         # Whether propagate the event.
         # None means use the default.
@@ -672,7 +670,7 @@ class HotkeyManager(object):
         if (propagate is not False) and (self._emask & EMASK_V_HOTKEY):
             # Find and call hotkey function
             hotkey_is_found, propagate = self._hotkey_find_and_call(
-                hotkey=self._vk_s_dn,
+                hotkey=self.vk_down_list(),
                 hotkey_type=HOTKEY_TYPE_V_DN,
                 event=event,
                 propagate=propagate,
@@ -693,15 +691,9 @@ class HotkeyManager(object):
 
         # If is mouse wheel or mouse move event handler
         if mouse_wm:
-            try:
-                # Remove the mouse event's virtual key because it has no
-                # corresponding up event
-                self._vk_s_dn.remove(vk)
-
-            # If the virtual key not exists in the currently down list
-            except ValueError:
-                # Ignore
-                pass
+            # Remove the mouse event's virtual key because it has no
+            # corresponding up event
+            self._vk_down_remove(vk)
 
         # Decide whether propagate the event
         propagate = (not hotkey_is_found) or (propagate is True)
@@ -742,18 +734,15 @@ class HotkeyManager(object):
             # key
             vk_dn = vk
 
+        # Remove outdated virtual keys from currently down list
+        self._vk_down_remove_outdated()
+
         # Remember old currently down list
-        old_vk_s_dn = list(self._vk_s_dn)
+        old_vk_s_dn = list(self.vk_down_list())
 
-        try:
-            # Remove corresponding down event's virtual key from currently down
-            # list
-            self._vk_s_dn.remove(vk_dn)
-
-        # If the virtual key to remove not exists
-        except ValueError:
-            # Ignore
-            pass
+        # Remove corresponding down event's virtual key from currently down
+        # list
+        self._vk_down_remove(vk_dn)
 
         # Whether propagate the event.
         # None means use the default.
@@ -1045,6 +1034,64 @@ class HotkeyManager(object):
         # Return True
         return True
 
+    def _vk_down_add(self, vk):
+        """
+        Add given virtual key to currently down list.
+
+        :param vk: Virtual key.
+
+        :return: None.
+        """
+        # Get virtual key info
+        vk_info = (vk, time.time())
+
+        # Add virtual key info to currently down list
+        self._vk_s_dn.append(vk_info)
+
+    def _vk_down_remove(self, vk):
+        """
+        Remove given virtual key from currently down list.
+
+        :param vk: Virtual key.
+
+        :return: None.
+        """
+        # New virtual key down list
+        new_down_list = []
+
+        # For each virtual key info in currently down list
+        for vk_info in self._vk_s_dn:
+            # If the virtual key is not given virtual key
+            if vk_info[0] != vk:
+                # Add the virtual key info to the new list
+                new_down_list.append(vk_info)
+
+        # Replace the old list with the new list
+        self._vk_s_dn = new_down_list
+
+    def _vk_down_remove_outdated(self):
+        """
+        Remove outdated virtual keys from currently down list.
+
+        :return: None.
+        """
+        # Get timestamp min value before which virtual keys are considered
+        # outdated
+        timestamp_min = time.time() - 1
+
+        # New virtual key down list
+        new_down_list = []
+
+        # For each virtual key info in currently down list
+        for vk_info in self._vk_s_dn:
+            # If the virtual key's timestamp is not outdated
+            if vk_info[1] > timestamp_min:
+                # Add the virtual key info to the new list
+                new_down_list.append(vk_info)
+
+        # Replace the old list with the new list
+        self._vk_s_dn = new_down_list
+
     def vk_down_list(self):
         """
         Get currently down virtual key list.
@@ -1052,7 +1099,7 @@ class HotkeyManager(object):
         :return: Currently down virtual key list.
         """
         # Return currently down virtual key list
-        return self._vk_s_dn
+        return [x[0] for x in self._vk_s_dn]
 
     def vk_to_name(self, vk):
         """
