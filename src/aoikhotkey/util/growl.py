@@ -133,7 +133,7 @@ def hotkey_tfunc(hotkey_manager, hotkey, hotkey_type, hotkey_info, event):
 
         # Get notification title
         title = '{hotkey_type}{up_dn_text}triggered'.format(
-            hotkey_type='Hotseq' \
+            hotkey_type='Hotseq'
             if hotkey_type == HOTKEY_TYPE_V_KS else 'Hotkey',
             up_dn_text=up_dn_text,
         )
