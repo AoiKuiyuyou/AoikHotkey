@@ -25,7 +25,7 @@ Tested working with:
 ### Setup via pip
 Run:
 ```
-pip install git+https://github.com/AoiKuiyuyou/AoikHotkey
+pip install AoikHotkey
 ```
 
 ### Setup via git
