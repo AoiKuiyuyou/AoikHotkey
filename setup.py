@@ -42,7 +42,7 @@ else:
 setup(
     name='AoikHotkey',
 
-    version='0.4.0',
+    version='0.5.0',
 
     description=(
         'Python hotkey manager that works on Linux, MacOS, and Windows.'

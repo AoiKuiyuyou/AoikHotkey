@@ -3,3 +3,7 @@
 Package.
 """
 from __future__ import absolute_import
+
+
+# Version
+__version__ = '0.5.0'
