@@ -1,1 +1,1 @@
-autoflake
+autoflake==1.1

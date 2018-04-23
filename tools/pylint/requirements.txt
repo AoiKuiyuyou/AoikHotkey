@@ -1,1 +1,1 @@
-pylint
+pylint==1.8.4

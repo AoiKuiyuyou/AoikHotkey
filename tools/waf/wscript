@@ -1079,7 +1079,7 @@ def isort(ctx, check_only=False):
             '--diff' if check_only else None,
 
             # Add import statement to all files
-            '--add_import',
+            '-a',
 
             # Import statement to add to all files
             'from __future__ import absolute_import',

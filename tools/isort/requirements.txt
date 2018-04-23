@@ -1,1 +1,1 @@
-isort
+isort==4.3.4

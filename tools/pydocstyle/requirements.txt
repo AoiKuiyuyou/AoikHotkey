@@ -1,1 +1,1 @@
-pydocstyle
+pydocstyle==2.1.1

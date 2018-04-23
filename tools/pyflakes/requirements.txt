@@ -1,1 +1,1 @@
-pyflakes
+pyflakes==1.6.0
