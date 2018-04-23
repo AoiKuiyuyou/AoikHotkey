@@ -5,10 +5,10 @@ This module contains event manager for the current platform.
 from __future__ import absolute_import
 
 # Local imports
+from .compat import IS_CYGWIN
 from .compat import IS_LINUX
 from .compat import IS_MACOS
 from .compat import IS_WINOS
-from .compat import IS_CYGWIN
 from .compat import UNSUPPORTED_PLATFORM_ERROR
 
 
@@ -27,9 +27,9 @@ elif IS_WINOS:
     # Use event manager for Windows
     from .event_manager_windows import EventManager
 
-# If the platform is Windows
+# If the platform is Cygwin
 elif IS_CYGWIN:
-    # Use event manager for Windows
+    # Use event manager for Cygwin
     from .event_manager_cygwin import EventManager
 
 # If the platform is none of above

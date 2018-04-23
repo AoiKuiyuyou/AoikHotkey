@@ -8,6 +8,10 @@ from __future__ import absolute_import
 import ctypes
 from ctypes import byref
 
+# External imports
+from PyHook3 import HookManager
+
+
 user32 = ctypes.cdll.LoadLibrary('user32.dll')
 
 LONG = ctypes.c_int32
@@ -16,6 +20,7 @@ UINT = ctypes.c_uint
 BOOL = ctypes.c_int
 HANDLE = ctypes.c_void_p
 HWND = HANDLE
+
 if ctypes.sizeof(ctypes.c_long) == ctypes.sizeof(ctypes.c_void_p):
     WPARAM = ctypes.c_ulong
     LPARAM = ctypes.c_long
@@ -38,9 +43,6 @@ class MSG(ctypes.Structure):
         ("lParam", LPARAM),
         ("time", DWORD),
         ("pt", POINT)]
-
-# External imports
-from PyHook3 import HookManager
 
 
 GetMessageW = user32.GetMessageW

@@ -93,10 +93,15 @@ def syspath_init():
         # Prepend the directory path to `sys.path`
         sys.path.insert(0, dep_dir)
 
-    # If the platform is Windows
-    if sys.platform.startswith('win'):
+    # If the platform is Windows or Cygwin
+    if sys.platform.startswith('win') or sys.platform.startswith('cygwin'):
         # Get `pyHook` directory name according to current Python version
         pyhook_dir_name = get_pyhook_dir_name()
+
+        # If the platform is Cygwin
+        if sys.platform.startswith('cygwin'):
+            # Add postfix
+            pyhook_dir_name += '-cygwin'
 
         # Get `pyHook` directory path
         pyhook_dir = os.path.join(dep_dir, 'pyHook_versions', pyhook_dir_name)
