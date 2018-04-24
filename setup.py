@@ -81,6 +81,12 @@ setup(
 
     packages=find_packages('src'),
 
+    package_data={
+        'aoikhotkeydep': [
+            'pyHook_versions/*/*/*',
+        ],
+    },
+
     include_package_data=True,
 
     install_requires=dependency_package_list,

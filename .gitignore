@@ -4,6 +4,7 @@
 !/src
 !/tools
 !/LICENSE.txt
+!/MANIFEST.in
 !/README.md
 !/README.src.md
 !/readme_nto.py
