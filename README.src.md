@@ -5,16 +5,17 @@ aoikdyndocdsl -s README.src.md -n aoikdyndocdsl.ext.all::nto -g README.md
 ]\
 [:HDLR('heading', 'heading')]\
 # AoikHotkey
-Python hotkey manager that works on Linux, MacOS, and Windows.
+Python hotkey manager that works on Linux, MacOS, Windows and Cygwin.
 
-See [my hotkey config](https://github.com/AoiKuiyuyou/AoikHotkeyHowto) for
+See [my hotkey config](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/master/config/spec_main.py) for
 ideas.
 
 Tested working with:
-- Python 2.7 and 3.5
+- Python 2.7.14 and 3.6.5
 - Linux (X11 with Record Extension)
 - Mac OS X 10.11 EI Captain
 - Windows XP, Windows 8.1, Windows 10
+- Cygwin 2.10.0 64-bit
 
 ## Table of Contents
 [:toc(beg='next', indent=-1)]
@@ -67,7 +68,7 @@ python src/aoikhotkey/__main__.py
 ```
 
 ### Specify hotkey config
-Create hotkey config file `hotkey_config.py` (see [my hotkey config](https://github.com/AoiKuiyuyou/AoikHotkeyHowto) for ideas):
+Create hotkey config file `hotkey_config.py` (see [my hotkey config](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/master/config/spec_main.py) for ideas):
 ```
 # coding: utf-8
 """
@@ -79,6 +80,10 @@ from __future__ import absolute_import
 from aoikhotkey.util.cmd import Quit
 from aoikhotkey.util.cmd import SpecReload
 from aoikhotkey.util.efunc import efunc_no_mouse
+
+
+def print_hello():
+    print('hello')
 
 
 SPEC = [
@@ -114,6 +119,10 @@ SPEC = [
     # Open program.
     # Hotkey: WIN+F1
     ('#F1', 'notepad.exe'),
+    
+    # Call function.
+    # Hotkey: CTRL+ALT+F1
+    ('^!F1', print_hello),
 ]
 ```
 
