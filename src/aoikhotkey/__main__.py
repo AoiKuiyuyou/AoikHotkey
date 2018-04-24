@@ -177,6 +177,32 @@ def check_deps():
             # Return error message
             return msg
 
+    # If the platform is Windows or Cygwin
+    if sys.platform.startswith('win') or sys.platform.startswith('cygwin'):
+        try:
+            # Import dependency module
+            try:
+                import PyHook3
+
+                # Suppress linter error
+                id(PyHook3)
+            except ImportError:
+                import pyHook
+
+                # Suppress linter error
+                id(pyHook)
+
+        # If the dependency module is not found
+        except ImportError:
+            # Get error message
+            msg = (
+                'Error: Package `PyHook3` or `pyHook` is not installed. Try:\n'
+                'pip install PyHook3\n'
+            )
+
+            # Return error message
+            return msg
+
     # Return None to mean no missing dependency
     return None
 

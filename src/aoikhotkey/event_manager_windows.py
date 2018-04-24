@@ -10,7 +10,10 @@ from ctypes import byref
 from ctypes.wintypes import MSG
 
 # External imports
-from pyHook import HookManager
+try:
+    from PyHook3 import HookManager
+except ImportError:
+    from pyHook import HookManager
 
 
 GetMessageW = ctypes.windll.user32.GetMessageW
