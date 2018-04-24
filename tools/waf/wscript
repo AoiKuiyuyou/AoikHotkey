@@ -179,7 +179,7 @@ _PY2 = (sys.version_info[0] == 2)
 APPNAME = 'AoikHotkey'
 
 # Version
-VERSION = '0.5.0'
+VERSION = '0.6.0'
 
 # Top directory relative path relative to this `wscript` file
 top = './../..'  # pylint: disable=C0103
