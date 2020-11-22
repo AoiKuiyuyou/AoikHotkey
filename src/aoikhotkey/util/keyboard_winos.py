@@ -92,6 +92,61 @@ class SendKeys(object):
             )
 
 
+class SendRawKeys():
+    """
+    Hotkey function class that sends raw keys.
+    """
+
+    #
+    def __init__(self, keys, keys_stroke_kwargs=None):
+        """
+        Constructor.
+
+        :param keys: Raw keys to send.
+
+        :param keys_stroke_kwargs: Keyword arguments to be passed to \
+            `keys_stroke` function.
+
+        :return: None.
+        """
+        # Store keyword arguments to be passed to `keys_stroke` function
+        self._keys_stroke_kwargs = keys_stroke_kwargs or {}
+
+        # Virtual key list
+        self._vks = []
+
+        # For each character
+        for key in keys:
+            # Map the character to virtual key
+            vk = MAP_CHAR_TO_WIN_VK.get(key, None)
+
+            # If virtual key is found
+            if vk is not None:
+                # Add the virtual key to the virtual key list
+                self._vks.append(vk)
+
+            # If virtual key is not found
+            else:
+                # Map the (assumed) shifted character to virtual key
+                vk = MAP_SHIFTED_CHAR_TO_WIN_VK.get(key, None)
+
+                # Assert virtual key is found
+                assert vk is not None
+
+                # Add LSHIFT to the virtual key list
+                self._vks.append(VK_LSHIFT)
+
+                # Add the virtual key found to the virtual key list
+                self._vks.append(vk)
+
+    def __call__(self):
+        """
+        Hotkey function that sends keys.
+        """
+        # Send keys
+        SendKeys(self._vks, parse=False, **self._keys_stroke_kwargs)()
+
+
 class SendSubs(NeedHotkeyInfo):
     """
     Hotkey function class that sends substitution text.
@@ -100,7 +155,7 @@ class SendSubs(NeedHotkeyInfo):
     """
 
     #
-    def __init__(self, keys, back_count=None, sendkeys_kwargs=None):
+    def __init__(self, keys, back_count=None, keys_stroke_kwargs=None):
         """
         Constructor.
 
@@ -109,16 +164,16 @@ class SendSubs(NeedHotkeyInfo):
         :param back_count: Number of backspaces to send to delete previously \
             entered text. If not given, will be automatically computed.
 
-        :param sendkeys_kwargs: Keyword arguments to be passed to `SendKeys` \
-            class constructor.
+        :param keys_stroke_kwargs: Keyword arguments to be passed to \
+            `keys_stroke` function.
 
         :return: None.
         """
         # Call super class constructor
         super(NeedHotkeyInfo, self).__init__()
 
-        # Store keyword arguments to be passed to `SendKeys` class constructor
-        self._sendkeys_kwargs = sendkeys_kwargs or {}
+        # Store keyword arguments to be passed to `keys_stroke` function
+        self._keys_stroke_kwargs = keys_stroke_kwargs or {}
 
         # Store the number of backspaces to send.
         # Specified by user or initialized in method `hotkey_info_set`
@@ -159,7 +214,7 @@ class SendSubs(NeedHotkeyInfo):
         vks = [VK_BACK] * self._back_count + self._vks
 
         # Send keys
-        SendKeys(vks, parse=False, **self._sendkeys_kwargs)()
+        SendKeys(vks, parse=False, **self._keys_stroke_kwargs)()
 
     def hotkey_info_set(self, hotkey_info):
         """
