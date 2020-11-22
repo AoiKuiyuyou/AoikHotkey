@@ -5,10 +5,10 @@ See [my hotkey config](https://github.com/AoiKuiyuyou/AoikHotkeyHowto/blob/maste
 ideas.
 
 Tested working with:
-- Python 2.7.14 and 3.6.5
+- Python 2.7, 3.6, 3.7, 3.8, 3.9
 - Linux (X11 with Record Extension)
-- Mac OS X 10.11 EI Captain
-- Windows XP, Windows 8.1, Windows 10
+- Mac OS X 10.15 Catalina
+- Windows XP to Windows 10
 - Cygwin 2.10.0 64-bit
 
 ## Table of Contents
@@ -43,14 +43,9 @@ python setup.py install
 ```
 
 ### Setup for MacOS
-In my case, installing dependency package `pyobjc` using pip took a long time
-to download some sub-packages and eventually got timeout error. I managed
-to complete the installation by manually downloading and installing these
-sub-packages and re-running `pip install pyobjc`.
-  
 On MacOS, it is needed to allow the terminal in which AoikHotkey is running to
 control your computer. First run AoikHotkey in the terminal, then go to
-`System Preferences - Security & Privacy - Accessibility`, and enable the terminal
+`System Preferences - Security & Privacy - Accessibility`, and enable the `Terminal`
 program in the list.
 
 ## Usage
