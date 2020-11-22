@@ -41,6 +41,9 @@ HOTKEY_INFO_K_HOTKEY_TUPLES = 'hotkey_tuples'
 # Hotkey's original spec
 HOTKEY_INFO_K_HOTKEY_ORIG_SPEC = 'hotkey_orig_spec'
 
+# Hotkey's full spec
+HOTKEY_INFO_K_HOTKEY_FULL_SPEC = 'hotkey_full_spec'
+
 # List of hotkey functions that are NeedHotkeyInfo instances
 HOTKEY_INFO_K_NEED_HOTKEY_INFO_LIST = 'need_hotkey_info_list'
 

@@ -10,6 +10,7 @@ from subprocess import Popen
 import webbrowser
 
 # Local imports
+from .const import HOTKEY_INFO_K_HOTKEY_FULL_SPEC
 from .const import HOTKEY_INFO_K_HOTKEY_FUNC
 from .const import HOTKEY_INFO_K_HOTKEY_ORIG_SPEC
 from .const import HOTKEY_INFO_K_HOTKEY_PATTERN
@@ -140,6 +141,10 @@ def spec_parse(specs):
 
     :return: Hotkey info list.
     """
+    # Import here to avoid circular import.
+    from .util.cmd import MuteNoti
+    from .util.cmd import Noti
+
     # `Call in main thread` option
     _OPT_CALL_IN_MAIN_THREAD = '_OPT_CALL_IN_MAIN_THREAD'
 
@@ -151,6 +156,9 @@ def spec_parse(specs):
 
     # For given hotkey spec list's each hotkey spec
     for spec in specs:
+        #
+        full_spec = list(spec)
+
         # Get hotkey pattern
         hotkey_pattern = spec[0]
 
@@ -271,6 +279,10 @@ def spec_parse(specs):
                     # Use the created function as function item
                     func_item = new_func
 
+                    #
+                    if Noti not in full_spec and MuteNoti not in full_spec:
+                        full_spec.append(MuteNoti)
+
                 # If the string is none of above,
                 # assume it is a command.
                 else:
@@ -347,6 +359,8 @@ def spec_parse(specs):
             HOTKEY_INFO_K_HOTKEY_PATTERN: hotkey_pattern,
             HOTKEY_INFO_K_HOTKEY_FUNC: hotkey_func,
             HOTKEY_INFO_K_HOTKEY_ORIG_SPEC: spec,
+            HOTKEY_INFO_K_HOTKEY_ORIG_SPEC: spec,
+            HOTKEY_INFO_K_HOTKEY_FULL_SPEC: tuple(full_spec),
             HOTKEY_INFO_K_NEED_HOTKEY_INFO_LIST: need_info_instance_s,
         }
 

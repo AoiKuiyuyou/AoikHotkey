@@ -159,3 +159,11 @@ def Sleep(duration):
     """
     # Return hotkey function that sleeps for given duration
     return partial(sleep, duration)
+
+
+class Noti(object):
+    pass
+
+
+class MuteNoti(object):
+    pass
