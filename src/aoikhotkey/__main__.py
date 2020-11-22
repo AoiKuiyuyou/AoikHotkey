@@ -85,11 +85,10 @@ def syspath_init():
     # Get `aoikhotkeydep` directory path
     dep_dir = os.path.join(src_dir, 'aoikhotkeydep')
 
-    # Assert the directory path exists
-    assert os.path.isdir(dep_dir), dep_dir
-
-    # If `aoikhotkeydep` directory path is not in `sys.path`
-    if dep_dir not in sys.path:
+    # If `aoikhotkeydep` directory path is existing and not in `sys.path`.
+    # On MacOS, `aoikhotkeydep` directory is packed inside the egg file so is
+    # not existing.
+    if os.path.isdir(dep_dir) and dep_dir not in sys.path:
         # Prepend the directory path to `sys.path`
         sys.path.insert(0, dep_dir)
 
