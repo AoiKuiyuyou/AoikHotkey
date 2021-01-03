@@ -42,7 +42,7 @@ else:
 setup(
     name='AoikHotkey',
 
-    version='0.6.0',
+    version='0.7.0',
 
     description=(
         'Python hotkey manager that works on Linux, MacOS, and Windows.'
@@ -72,6 +72,9 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
 
     keywords='hotkey',

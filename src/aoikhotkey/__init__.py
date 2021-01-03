@@ -6,4 +6,4 @@ from __future__ import absolute_import
 
 
 # Version
-__version__ = '0.6.0'
+__version__ = '0.7.0'
